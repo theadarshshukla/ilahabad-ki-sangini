@@ -1,0 +1,6480 @@
+<!DOCTYPE html>
+
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="आदर्श शुक्ला (@theadarshshukla) — B.Tech Computer & Data Science student, Software Developer, Data Analyst, Hindi Poet, Writer and author of इलाहाबाद की संगिनी.">
+
+<meta name="keywords"
+      content="Adarsh Shukla, The Adarsh Shukla, theadarshshukla, इलाहाबाद की संगिनी, Allahabad Ki Sangini, Hindi Author, Hindi Poet, Software Developer, Data Analyst, Computer Data Science">
+
+<meta name="author" content="Adarsh Shukla">
+
+<meta property="og:title"
+      content="आदर्श शुक्ला | Author • Developer • Data Science">
+
+<meta property="og:description"
+      content="आदर्श शुक्ला का आधिकारिक लेखक एवं प्रोफेशनल पोर्टफोलियो।">
+
+<meta property="og:type" content="website">
+
+<meta name="theme-color" content="#7f1d1d">
+
+<title>
+    आदर्श शुक्ला | Author • Developer • Data Scientist • Poet
+</title>
+
+
+<!-- =========================================================
+     EXTERNAL LIBRARIES
+========================================================== -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+>
+
+
+<!-- =========================================================
+     GLOBAL STYLE
+========================================================== -->
+
+<style>
+
+    /* =====================================================
+       ROOT VARIABLES
+    ====================================================== */
+
+    :root {
+
+        --wine:
+            #7f1d1d;
+
+        --wine-dark:
+            #450a0a;
+
+        --wine-light:
+            #991b1b;
+
+        --gold:
+            #c9a227;
+
+        --gold-light:
+            #e8c766;
+
+        --cream:
+            #fbf8f1;
+
+        --paper:
+            #fffdf8;
+
+        --ink:
+            #171717;
+
+        --muted:
+            #6b7280;
+
+        --soft:
+            #f3f0e8;
+
+        --border:
+            rgba(127,29,29,.12);
+
+        --shadow:
+            0 20px 60px rgba(0,0,0,.10);
+
+        --shadow-lg:
+            0 30px 90px rgba(0,0,0,.18);
+
+        --radius:
+            22px;
+
+        --transition:
+            all .45s cubic-bezier(.2,.8,.2,1);
+
+    }
+
+
+    /* =====================================================
+       RESET
+    ====================================================== */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+    body {
+
+        font-family:
+            "DM Sans",
+            "Noto Serif Devanagari",
+            sans-serif;
+
+        background:
+            var(--cream);
+
+        color:
+            var(--ink);
+
+        line-height:
+            1.7;
+
+        overflow-x:
+            hidden;
+    }
+
+
+    body::selection {
+
+        background:
+            var(--wine);
+
+        color:
+            white;
+    }
+
+
+    img {
+        max-width: 100%;
+    }
+
+
+    a {
+        text-decoration: none !important;
+    }
+
+
+    button {
+        font-family:
+            inherit;
+    }
+
+
+    /* =====================================================
+       CUSTOM SCROLLBAR
+    ====================================================== */
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+
+    ::-webkit-scrollbar-track {
+        background:
+            #eee8db;
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+
+        background:
+            linear-gradient(
+                var(--wine),
+                var(--gold)
+            );
+
+        border-radius:
+            50px;
+    }
+
+
+  
+    /* =====================================================
+       NAVBAR
+    ====================================================== */
+
+    .main-navbar {
+
+        position:
+            fixed;
+
+        top:
+            0;
+
+        left:
+            0;
+
+        width:
+            100%;
+
+        z-index:
+            5000;
+
+        padding:
+            18px 0;
+
+        transition:
+            var(--transition);
+
+        background:
+            rgba(20,7,7,.12);
+
+        backdrop-filter:
+            blur(12px);
+    }
+
+
+    .main-navbar.scrolled {
+
+        padding:
+            10px 0;
+
+        background:
+            rgba(255,253,248,.96);
+
+        box-shadow:
+            0 10px 35px rgba(0,0,0,.08);
+    }
+
+
+    .brand {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            12px;
+
+        color:
+            white !important;
+
+        font-weight:
+            700;
+
+        font-size:
+            19px;
+    }
+
+
+    .scrolled .brand {
+        color:
+            var(--wine) !important;
+    }
+
+
+    .brand-mark {
+
+        width:
+            43px;
+
+        height:
+            43px;
+
+        border:
+            1px solid
+            rgba(255,255,255,.4);
+
+        border-radius:
+            50%;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        color:
+            var(--gold);
+
+        font-size:
+            17px;
+    }
+
+
+    .nav-link-custom {
+
+        color:
+            rgba(255,255,255,.88) !important;
+
+        font-size:
+            14px;
+
+        font-weight:
+            600;
+
+        margin:
+            0 6px;
+
+        padding:
+            8px 13px !important;
+
+        border-radius:
+            50px;
+
+        transition:
+            var(--transition);
+    }
+
+
+    .scrolled .nav-link-custom {
+
+        color:
+            #333 !important;
+    }
+
+
+    .nav-link-custom:hover {
+
+        color:
+            var(--gold) !important;
+
+        background:
+            rgba(255,255,255,.08);
+    }
+
+
+    .scrolled .nav-link-custom:hover {
+
+        background:
+            rgba(127,29,29,.06);
+    }
+
+
+    .nav-cta {
+
+        background:
+            var(--gold);
+
+        color:
+            #251606 !important;
+
+        padding:
+            9px 17px !important;
+
+        border-radius:
+            50px;
+
+        font-weight:
+            700;
+    }
+
+
+    .navbar-toggler {
+
+        border:
+            1px solid
+            rgba(255,255,255,.4);
+
+        color:
+            white;
+    }
+
+
+    .scrolled .navbar-toggler {
+
+        color:
+            var(--wine);
+
+        border-color:
+            var(--wine);
+    }
+
+
+    /* =====================================================
+       HERO
+    ====================================================== */
+
+    .hero {
+
+        min-height:
+            100vh;
+
+        position:
+            relative;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        overflow:
+            hidden;
+
+        background:
+            radial-gradient(
+                circle at 80% 20%,
+                rgba(201,162,39,.16),
+                transparent 30%
+            ),
+
+            radial-gradient(
+                circle at 10% 80%,
+                rgba(127,29,29,.32),
+                transparent 35%
+            ),
+
+            linear-gradient(
+                135deg,
+                #190707,
+                #350b0b 48%,
+                #110303
+            );
+
+        color:
+            white;
+    }
+
+
+    .hero::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        inset:
+            0;
+
+        opacity:
+            .18;
+
+        background-image:
+            linear-gradient(
+                rgba(255,255,255,.03) 1px,
+                transparent 1px
+            ),
+
+            linear-gradient(
+                90deg,
+                rgba(255,255,255,.03) 1px,
+                transparent 1px
+            );
+
+        background-size:
+            50px 50px;
+    }
+
+
+    .hero-glow {
+
+        position:
+            absolute;
+
+        width:
+            450px;
+
+        height:
+            450px;
+
+        border-radius:
+            50%;
+
+        background:
+            rgba(201,162,39,.08);
+
+        filter:
+            blur(70px);
+
+        right:
+            -120px;
+
+        top:
+            100px;
+    }
+
+
+    .hero-content {
+
+        position:
+            relative;
+
+        z-index:
+            2;
+
+        padding:
+            150px 0 100px;
+    }
+
+
+    .eyebrow {
+
+        display:
+            inline-flex;
+
+        align-items:
+            center;
+
+        gap:
+            9px;
+
+        color:
+            var(--gold-light);
+
+        border:
+            1px solid
+            rgba(201,162,39,.35);
+
+        background:
+            rgba(201,162,39,.08);
+
+        padding:
+            7px 15px;
+
+        border-radius:
+            50px;
+
+        font-size:
+            12px;
+
+        letter-spacing:
+            1.4px;
+
+        text-transform:
+            uppercase;
+    }
+
+
+    .hero h1 {
+
+        font-family:
+            "Playfair Display",
+            "Noto Serif Devanagari",
+            serif;
+
+        font-size:
+            clamp(3rem,7vw,6.8rem);
+
+        line-height:
+            1.02;
+
+        margin:
+            24px 0;
+
+        font-weight:
+            700;
+    }
+
+
+    .hero h1 span {
+
+        color:
+            var(--gold);
+
+        display:
+            block;
+    }
+
+
+    .hero-subtitle {
+
+        font-size:
+            clamp(1rem,1.8vw,1.25rem);
+
+        color:
+            rgba(255,255,255,.76);
+
+        max-width:
+            850px;
+
+        line-height:
+            1.9;
+    }
+
+
+    .hero-handle {
+
+        margin-top:
+            20px;
+
+        color:
+            #f4d98c;
+
+        font-weight:
+            600;
+    }
+
+
+    .hero-buttons {
+
+        margin-top:
+            35px;
+
+        display:
+            flex;
+
+        flex-wrap:
+            wrap;
+
+        gap:
+            13px;
+    }
+
+
+    .btn-premium {
+
+        display:
+            inline-flex;
+
+        align-items:
+            center;
+
+        gap:
+            9px;
+
+        padding:
+            13px 22px;
+
+        border-radius:
+            50px;
+
+        font-weight:
+            700;
+
+        transition:
+            var(--transition);
+    }
+
+
+    .btn-gold {
+
+        background:
+            var(--gold);
+
+        color:
+            #261708;
+    }
+
+
+    .btn-gold:hover {
+
+        color:
+            #261708;
+
+        transform:
+            translateY(-4px);
+
+        box-shadow:
+            0 15px 30px rgba(201,162,39,.25);
+    }
+
+
+    .btn-outline {
+
+        border:
+            1px solid
+            rgba(255,255,255,.35);
+
+        color:
+            white;
+    }
+
+
+    .btn-outline:hover {
+
+        color:
+            white;
+
+        background:
+            rgba(255,255,255,.08);
+
+        transform:
+            translateY(-4px);
+    }
+
+
+    .hero-tags {
+
+        margin-top:
+            40px;
+
+        display:
+            flex;
+
+        flex-wrap:
+            wrap;
+
+        gap:
+            9px;
+    }
+
+
+    .hero-tag {
+
+        padding:
+            7px 12px;
+
+        border-radius:
+            50px;
+
+        background:
+            rgba(255,255,255,.06);
+
+        border:
+            1px solid
+            rgba(255,255,255,.1);
+
+        color:
+            rgba(255,255,255,.75);
+
+        font-size:
+            12px;
+    }
+
+
+    /* =====================================================
+       HERO BOOK
+    ====================================================== */
+
+    .hero-book-wrapper {
+
+        perspective:
+            1300px;
+
+        position:
+            relative;
+
+        display:
+            flex;
+
+        justify-content:
+            center;
+    }
+
+
+    .hero-book {
+
+        width:
+            min(330px,75vw);
+
+        transform:
+            rotateY(-16deg)
+            rotateX(4deg)
+            rotateZ(2deg);
+
+        transition:
+            transform .8s ease;
+
+        filter:
+            drop-shadow(
+                25px 35px 35px
+                rgba(0,0,0,.45)
+            );
+    }
+
+
+    .hero-book:hover {
+
+        transform:
+            rotateY(0)
+            rotateX(0)
+            rotateZ(0)
+            translateY(-15px)
+            scale(1.03);
+    }
+
+
+    .hero-book img {
+
+        width:
+            100%;
+
+        display:
+            block;
+
+        border-radius:
+            5px 10px 10px 5px;
+    }
+
+
+    .floating-card {
+
+        position:
+            absolute;
+
+        background:
+            rgba(255,255,255,.96);
+
+        color:
+            #222;
+
+        border-radius:
+            14px;
+
+        padding:
+            14px 17px;
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,.25);
+
+        font-size:
+            12px;
+
+        animation:
+            floatCard 5s ease-in-out infinite;
+    }
+
+
+    .floating-card.one {
+
+        top:
+            10%;
+
+        right:
+            -20px;
+    }
+
+
+    .floating-card.two {
+
+        bottom:
+            8%;
+
+        left:
+            -20px;
+
+        animation-delay:
+            1.4s;
+    }
+
+
+    .floating-card strong {
+
+        display:
+            block;
+
+        color:
+            var(--wine);
+
+        font-size:
+            15px;
+    }
+
+
+    @keyframes floatCard {
+
+        0%,100% {
+            transform:
+                translateY(0);
+        }
+
+        50% {
+            transform:
+                translateY(-12px);
+        }
+    }
+
+
+    /* =====================================================
+       STATS
+    ====================================================== */
+
+    .stats-section {
+
+        background:
+            var(--paper);
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    .stat-item {
+
+        padding:
+            32px 15px;
+
+        text-align:
+            center;
+
+        border-right:
+            1px solid var(--border);
+    }
+
+
+    .stat-item:last-child {
+        border-right:
+            0;
+    }
+
+
+    .stat-number {
+
+        font-family:
+            "Playfair Display",
+            serif;
+
+        font-size:
+            34px;
+
+        color:
+            var(--wine);
+
+        font-weight:
+            700;
+    }
+
+
+    .stat-label {
+
+        color:
+            var(--muted);
+
+        font-size:
+            13px;
+    }
+
+
+    /* =====================================================
+       GENERAL SECTION
+    ====================================================== */
+
+    .section {
+
+        padding:
+            110px 0;
+    }
+
+
+    .section-dark {
+
+        background:
+            #170606;
+
+        color:
+            white;
+    }
+
+
+    .section-kicker {
+
+        color:
+            var(--wine);
+
+        text-transform:
+            uppercase;
+
+        letter-spacing:
+            2px;
+
+        font-size:
+            11px;
+
+        font-weight:
+            800;
+
+        margin-bottom:
+            12px;
+    }
+
+
+    .section-dark .section-kicker {
+        color:
+            var(--gold);
+    }
+
+
+    .section-heading {
+
+        font-family:
+            "Playfair Display",
+            "Noto Serif Devanagari",
+            serif;
+
+        font-size:
+            clamp(2rem,4vw,3.5rem);
+
+        line-height:
+            1.15;
+
+        margin-bottom:
+            18px;
+
+        font-weight:
+            700;
+    }
+
+
+    .section-heading span {
+
+        color:
+            var(--wine);
+    }
+
+
+    .section-dark .section-heading span {
+        color:
+            var(--gold);
+    }
+
+
+    .section-description {
+
+        color:
+            var(--muted);
+
+        max-width:
+            780px;
+
+        line-height:
+            1.9;
+    }
+
+
+    .section-dark .section-description {
+        color:
+            rgba(255,255,255,.66);
+    }
+
+
+    /* =====================================================
+       BOOK SHOWCASE
+    ====================================================== */
+
+    .book-section {
+
+        background:
+            var(--paper);
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+    }
+
+
+    .book-section::before {
+
+        content:
+            "साहित्य";
+
+        position:
+            absolute;
+
+        right:
+            -40px;
+
+        top:
+            80px;
+
+        font-family:
+            "Noto Serif Devanagari",
+            serif;
+
+        font-size:
+            150px;
+
+        color:
+            rgba(127,29,29,.035);
+
+        pointer-events:
+            none;
+    }
+
+
+    .book-stage {
+
+        min-height:
+            600px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        perspective:
+            1500px;
+
+        position:
+            relative;
+    }
+
+
+    .book-card {
+
+        position:
+            relative;
+
+        width:
+            350px;
+
+        transform:
+            rotateY(-15deg)
+            rotateX(3deg)
+            rotateZ(-2deg);
+
+        transition:
+            var(--transition);
+
+        transform-style:
+            preserve-3d;
+    }
+
+
+    .book-card:hover {
+
+        transform:
+            rotateY(0deg)
+            rotateX(0deg)
+            rotateZ(0deg)
+            translateY(-15px)
+            scale(1.035);
+    }
+
+
+    .book-card::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        top:
+            4px;
+
+        bottom:
+            4px;
+
+        right:
+            -24px;
+
+        width:
+            25px;
+
+        border-radius:
+            0 5px 5px 0;
+
+        background:
+            linear-gradient(
+                90deg,
+                #3e0808,
+                #8e2020,
+                #420707
+            );
+
+        transform:
+            skewY(-1deg);
+
+        box-shadow:
+            8px 20px 30px rgba(0,0,0,.25);
+    }
+
+
+    .book-card img {
+
+        display:
+            block;
+
+        width:
+            100%;
+
+        border-radius:
+            5px;
+
+        box-shadow:
+            0 35px 65px rgba(0,0,0,.25);
+    }
+
+
+    .book-shadow {
+
+        position:
+            absolute;
+
+        width:
+            80%;
+
+        height:
+            40px;
+
+        bottom:
+            -20px;
+
+        left:
+            10%;
+
+        background:
+            rgba(0,0,0,.25);
+
+        filter:
+            blur(25px);
+
+        border-radius:
+            50%;
+    }
+
+
+    .book-info {
+
+        padding-left:
+            30px;
+    }
+
+
+    .book-title {
+
+        font-family:
+            "Noto Serif Devanagari",
+            "Playfair Display",
+            serif;
+
+        font-size:
+            clamp(2.3rem,5vw,4.2rem);
+
+        line-height:
+            1.15;
+
+        color:
+            var(--wine);
+
+        margin:
+            12px 0 18px;
+
+        font-weight:
+            700;
+    }
+
+
+    .book-subtitle {
+
+        font-size:
+            16px;
+
+        color:
+            var(--muted);
+
+        line-height:
+            1.9;
+
+        margin-bottom:
+            25px;
+    }
+
+
+    .book-meta {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:
+            12px;
+
+        margin:
+            25px 0;
+    }
+
+
+    .meta-box {
+
+        border:
+            1px solid var(--border);
+
+        background:
+            #fff;
+
+        padding:
+            15px;
+
+        border-radius:
+            14px;
+
+        transition:
+            var(--transition);
+    }
+
+
+    .meta-box:hover {
+
+        transform:
+            translateY(-4px);
+
+        border-color:
+            rgba(127,29,29,.3);
+
+        box-shadow:
+            0 12px 30px rgba(0,0,0,.06);
+    }
+
+
+    .meta-box i {
+
+        color:
+            var(--wine);
+
+        margin-right:
+            6px;
+    }
+
+
+    .meta-label {
+
+        display:
+            block;
+
+        font-size:
+            10px;
+
+        text-transform:
+            uppercase;
+
+        letter-spacing:
+            1px;
+
+        color:
+            var(--muted);
+
+        margin-bottom:
+            3px;
+    }
+
+
+    .meta-value {
+
+        font-weight:
+            700;
+
+        font-size:
+            14px;
+
+        color:
+            #292929;
+    }
+
+
+    /* =====================================================
+       AMAZON CARD
+    ====================================================== */
+
+    .amazon-card {
+
+        background:
+            linear-gradient(
+                135deg,
+                #1a0909,
+                #3c0b0b
+            );
+
+        color:
+            white;
+
+        padding:
+            27px;
+
+        border-radius:
+            20px;
+
+        margin-top:
+            25px;
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+
+        box-shadow:
+            0 25px 60px rgba(50,5,5,.18);
+    }
+
+
+    .amazon-card::after {
+
+        content:
+            "A";
+
+        position:
+            absolute;
+
+        right:
+            20px;
+
+        bottom:
+            -45px;
+
+        font-size:
+            170px;
+
+        font-weight:
+            900;
+
+        color:
+            rgba(255,255,255,.035);
+    }
+
+
+    .amazon-title {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            12px;
+
+        font-size:
+            19px;
+
+        font-weight:
+            700;
+
+        margin-bottom:
+            10px;
+    }
+
+
+    .amazon-title i {
+        color:
+            var(--gold);
+    }
+
+
+    .amazon-card p {
+
+        color:
+            rgba(255,255,255,.7);
+
+        font-size:
+            13px;
+
+        max-width:
+            650px;
+    }
+
+
+    .store-buttons {
+
+        display:
+            flex;
+
+        flex-wrap:
+            wrap;
+
+        gap:
+            10px;
+
+        margin-top:
+            18px;
+    }
+
+
+    .store-btn {
+
+        display:
+            inline-flex;
+
+        align-items:
+            center;
+
+        gap:
+            9px;
+
+        border:
+            1px solid
+            rgba(255,255,255,.2);
+
+        color:
+            white;
+
+        padding:
+            10px 15px;
+
+        border-radius:
+            10px;
+
+        font-size:
+            12px;
+
+        transition:
+            var(--transition);
+    }
+
+
+    .store-btn:hover {
+
+        background:
+            rgba(255,255,255,.08);
+
+        color:
+            white;
+
+        transform:
+            translateY(-3px);
+    }
+
+
+    .store-btn.primary {
+
+        background:
+            var(--gold);
+
+        color:
+            #241604;
+
+        border-color:
+            var(--gold);
+
+        font-weight:
+            700;
+    }
+
+
+    /* =====================================================
+       BOOK DESCRIPTION
+    ====================================================== */
+
+    .literary-box {
+
+        background:
+            #f6f1e6;
+
+        border-left:
+            4px solid
+            var(--gold);
+
+        padding:
+            25px;
+
+        margin-top:
+            25px;
+
+        border-radius:
+            0 15px 15px 0;
+    }
+
+
+    .literary-box p {
+
+        font-family:
+            "Noto Serif Devanagari",
+            serif;
+
+        font-size:
+            15px;
+
+        color:
+            #4b3d34;
+
+        line-height:
+            2;
+    }
+
+
+    /* =====================================================
+       ABOUT
+    ====================================================== */
+
+    .about-section {
+        background:
+            #f4f0e7;
+    }
+
+
+    .about-grid {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:
+            20px;
+
+        margin-top:
+            45px;
+    }
+
+
+    .info-card {
+
+        background:
+            rgba(255,255,255,.85);
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius:
+            var(--radius);
+
+        padding:
+            30px;
+
+        transition:
+            var(--transition);
+
+        height:
+            100%;
+    }
+
+
+    .info-card:hover {
+
+        transform:
+            translateY(-8px);
+
+        box-shadow:
+            var(--shadow);
+
+        border-color:
+            rgba(127,29,29,.25);
+    }
+
+
+    .info-icon {
+
+        width:
+            55px;
+
+        height:
+            55px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        border-radius:
+            15px;
+
+        background:
+            rgba(127,29,29,.08);
+
+        color:
+            var(--wine);
+
+        font-size:
+            20px;
+
+        margin-bottom:
+            18px;
+    }
+
+
+    .info-card h3 {
+
+        font-size:
+            19px;
+
+        font-weight:
+            700;
+
+        margin-bottom:
+            15px;
+    }
+
+
+    .info-list {
+
+        list-style:
+            none;
+    }
+
+
+    .info-list li {
+
+        padding:
+            9px 0;
+
+        border-bottom:
+            1px dashed
+            rgba(0,0,0,.08);
+
+        font-size:
+            13px;
+
+        color:
+            #555;
+    }
+
+
+    .info-list li:last-child {
+        border-bottom:
+            0;
+    }
+
+
+    .info-list strong {
+        color:
+            #222;
+    }
+
+
+    /* =====================================================
+       TIMELINE
+    ====================================================== */
+
+    .timeline {
+
+        position:
+            relative;
+
+        margin-top:
+            50px;
+
+        padding-left:
+            30px;
+    }
+
+
+    .timeline::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        left:
+            7px;
+
+        top:
+            0;
+
+        bottom:
+            0;
+
+        width:
+            2px;
+
+        background:
+            linear-gradient(
+                var(--wine),
+                var(--gold)
+            );
+    }
+
+
+    .timeline-item {
+
+        position:
+            relative;
+
+        padding:
+            0 0 40px 35px;
+    }
+
+
+    .timeline-item::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        left:
+            -1px;
+
+        top:
+            5px;
+
+        width:
+            16px;
+
+        height:
+            16px;
+
+        border-radius:
+            50%;
+
+        background:
+            var(--gold);
+
+        border:
+            4px solid
+            var(--cream);
+
+        box-shadow:
+            0 0 0 2px var(--wine);
+    }
+
+
+    .timeline-year {
+
+        color:
+            var(--wine);
+
+        font-weight:
+            800;
+
+        font-size:
+            12px;
+
+        letter-spacing:
+            1px;
+    }
+
+
+    .timeline-title {
+
+        font-size:
+            20px;
+
+        font-weight:
+            700;
+
+        margin:
+            4px 0;
+    }
+
+
+    .timeline-text {
+
+        color:
+            var(--muted);
+
+        font-size:
+            14px;
+    }
+
+
+    /* =====================================================
+       SKILLS
+    ====================================================== */
+
+    .skill-cloud {
+
+        display:
+            flex;
+
+        flex-wrap:
+            wrap;
+
+        gap:
+            10px;
+
+        margin-top:
+            30px;
+    }
+
+
+    .skill-pill {
+
+        padding:
+            10px 15px;
+
+        background:
+            white;
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius:
+            50px;
+
+        font-size:
+            12px;
+
+        color:
+            #444;
+
+        transition:
+            var(--transition);
+    }
+
+
+    .skill-pill:hover {
+
+        background:
+            var(--wine);
+
+        color:
+            white;
+
+        transform:
+            translateY(-3px);
+    }
+
+
+    /* =====================================================
+       TECH STACK LARGE
+    ====================================================== */
+
+    .tech-card {
+
+        background:
+            #fff;
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius:
+            18px;
+
+        padding:
+            25px;
+
+        height:
+            100%;
+
+        transition:
+            var(--transition);
+    }
+
+
+    .tech-card:hover {
+
+        transform:
+            translateY(-7px);
+
+        box-shadow:
+            var(--shadow);
+    }
+
+
+    .tech-card h4 {
+
+        font-size:
+            17px;
+
+        margin-bottom:
+            15px;
+
+        color:
+            var(--wine);
+    }
+
+
+    .tech-card p {
+
+        font-size:
+            13px;
+
+        color:
+            var(--muted);
+
+        margin:
+            0;
+    }
+
+
+    /* =====================================================
+       PROJECTS
+    ====================================================== */
+
+    .projects-section {
+        background:
+            var(--paper);
+    }
+
+
+    .project-card {
+
+        height:
+            100%;
+
+        background:
+            white;
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius:
+            22px;
+
+        padding:
+            30px;
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+
+        transition:
+            var(--transition);
+    }
+
+
+    .project-card::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        width:
+            150px;
+
+        height:
+            150px;
+
+        right:
+            -70px;
+
+        top:
+            -70px;
+
+        border-radius:
+            50%;
+
+        background:
+            rgba(127,29,29,.05);
+    }
+
+
+    .project-card:hover {
+
+        transform:
+            translateY(-10px);
+
+        box-shadow:
+            var(--shadow);
+
+        border-color:
+            rgba(127,29,29,.25);
+    }
+
+
+    .project-icon {
+
+        width:
+            60px;
+
+        height:
+            60px;
+
+        border-radius:
+            17px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        background:
+            #f6ecec;
+
+        color:
+            var(--wine);
+
+        font-size:
+            23px;
+
+        margin-bottom:
+            22px;
+    }
+
+
+    .project-card h3 {
+
+        font-size:
+            21px;
+
+        margin-bottom:
+            12px;
+    }
+
+
+    .project-card p {
+
+        color:
+            var(--muted);
+
+        font-size:
+            13px;
+
+        line-height:
+            1.8;
+    }
+
+
+    .project-tags {
+
+        display:
+            flex;
+
+        flex-wrap:
+            wrap;
+
+        gap:
+            7px;
+
+        margin-top:
+            20px;
+    }
+
+
+    .project-tag {
+
+        font-size:
+            10px;
+
+        padding:
+            5px 9px;
+
+        border-radius:
+            30px;
+
+        background:
+            #f5f5f5;
+
+        color:
+            #555;
+    }
+
+
+    /* =====================================================
+       LITERARY IDENTITY
+    ====================================================== */
+
+    .literary-section {
+
+        background:
+            linear-gradient(
+                135deg,
+                #210707,
+                #4c0d0d
+            );
+
+        color:
+            white;
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+    }
+
+
+    .literary-section::before {
+
+        content:
+            "❖";
+
+        position:
+            absolute;
+
+        font-size:
+            400px;
+
+        color:
+            rgba(201,162,39,.03);
+
+        right:
+            -100px;
+
+        top:
+            -100px;
+    }
+
+
+    .quote {
+
+        font-family:
+            "Noto Serif Devanagari",
+            "Playfair Display",
+            serif;
+
+        font-size:
+            clamp(1.7rem,3vw,3rem);
+
+        line-height:
+            1.7;
+
+        color:
+            #fff;
+
+        max-width:
+            900px;
+
+        margin:
+            0 auto;
+
+        text-align:
+            center;
+    }
+
+
+    .quote-mark {
+
+        color:
+            var(--gold);
+
+        font-size:
+            60px;
+
+        line-height:
+            1;
+    }
+
+
+    /* =====================================================
+       AUTHOR PROFILE
+    ====================================================== */
+
+    .author-profile {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            320px 1fr;
+
+        gap:
+            45px;
+
+        align-items:
+            center;
+
+        margin-top:
+            50px;
+    }
+
+
+    .author-placeholder {
+
+        width:
+            100%;
+
+        aspect-ratio:
+            1/1;
+
+        border-radius:
+            30px;
+
+        background:
+            linear-gradient(
+                145deg,
+                #2b0909,
+                #7f1d1d
+            );
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        color:
+            var(--gold);
+
+        font-size:
+            90px;
+
+        box-shadow:
+            var(--shadow-lg);
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+    }
+
+
+    .author-placeholder::after {
+
+        content:
+            "ADARSH";
+
+        position:
+            absolute;
+
+        bottom:
+            22px;
+
+        font-size:
+            12px;
+
+        letter-spacing:
+            5px;
+
+        color:
+            rgba(255,255,255,.65);
+    }
+
+
+    .author-copy h3 {
+
+        font-family:
+            "Playfair Display",
+            serif;
+
+        font-size:
+            34px;
+
+        color:
+            var(--wine);
+    }
+
+
+    .author-copy p {
+
+        color:
+            var(--muted);
+
+        line-height:
+            1.9;
+
+        font-size:
+            15px;
+    }
+
+
+    .identity-list {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:
+            12px;
+
+        margin-top:
+            25px;
+    }
+
+
+    .identity-item {
+
+        padding:
+            14px;
+
+        background:
+            #fff;
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius:
+            13px;
+
+        font-size:
+            12px;
+    }
+
+
+    .identity-item i {
+
+        color:
+            var(--wine);
+
+        margin-right:
+            7px;
+    }
+
+
+    /* =====================================================
+       ACHIEVEMENTS
+    ====================================================== */
+
+    .achievement-card {
+
+        text-align:
+            center;
+
+        padding:
+            30px 20px;
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius:
+            20px;
+
+        background:
+            white;
+
+        height:
+            100%;
+
+        transition:
+            var(--transition);
+    }
+
+
+    .achievement-card:hover {
+
+        transform:
+            translateY(-7px);
+
+        box-shadow:
+            var(--shadow);
+    }
+
+
+    .achievement-icon {
+
+        font-size:
+            30px;
+
+        color:
+            var(--gold);
+
+        margin-bottom:
+            15px;
+    }
+
+
+    .achievement-card h4 {
+
+        font-size:
+            16px;
+
+        margin-bottom:
+            8px;
+    }
+
+
+    .achievement-card p {
+
+        font-size:
+            12px;
+
+        color:
+            var(--muted);
+
+        margin:
+            0;
+    }
+
+
+    /* =====================================================
+       FAQ
+    ====================================================== */
+
+    .faq-item {
+
+        background:
+            white;
+
+        border:
+            1px solid
+            var(--border);
+
+        border-radius:
+            15px;
+
+        margin-bottom:
+            12px;
+
+        overflow:
+            hidden;
+    }
+
+
+    .faq-question {
+
+        width:
+            100%;
+
+        border:
+            0;
+
+        background:
+            white;
+
+        text-align:
+            left;
+
+        padding:
+            19px 22px;
+
+        font-weight:
+            700;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            space-between;
+
+        color:
+            #222;
+
+        cursor:
+            pointer;
+    }
+
+
+    .faq-question i {
+
+        transition:
+            transform .3s ease;
+
+        color:
+            var(--wine);
+    }
+
+
+    .faq-answer {
+
+        max-height:
+            0;
+
+        overflow:
+            hidden;
+
+        transition:
+            max-height .45s ease;
+    }
+
+
+    .faq-answer p {
+
+        padding:
+            0 22px 20px;
+
+        margin:
+            0;
+
+        font-size:
+            13px;
+
+        color:
+            var(--muted);
+
+        line-height:
+            1.9;
+    }
+
+
+    .faq-item.active
+    .faq-answer {
+
+        max-height:
+            300px;
+    }
+
+
+    .faq-item.active
+    .faq-question i {
+
+        transform:
+            rotate(180deg);
+    }
+
+
+    /* =====================================================
+       CONTACT
+    ====================================================== */
+
+    .contact-section {
+
+        background:
+            #f1ece1;
+    }
+
+
+    .contact-card {
+
+        background:
+            #1a0606;
+
+        color:
+            white;
+
+        border-radius:
+            25px;
+
+        padding:
+            45px;
+
+        box-shadow:
+            var(--shadow-lg);
+    }
+
+
+    .contact-card h3 {
+
+        font-family:
+            "Playfair Display",
+            serif;
+
+        font-size:
+            35px;
+    }
+
+
+    .contact-card p {
+
+        color:
+            rgba(255,255,255,.65);
+
+        font-size:
+            14px;
+    }
+
+
+    .contact-links {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:
+            10px;
+
+        margin-top:
+            25px;
+    }
+
+
+    .contact-link {
+
+        padding:
+            13px;
+
+        border:
+            1px solid
+            rgba(255,255,255,.1);
+
+        border-radius:
+            12px;
+
+        color:
+            rgba(255,255,255,.8);
+
+        font-size:
+            12px;
+
+        transition:
+            var(--transition);
+    }
+
+
+    .contact-link:hover {
+
+        color:
+            var(--gold);
+
+        border-color:
+            rgba(201,162,39,.4);
+
+        transform:
+            translateY(-3px);
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ====================================================== */
+
+    footer {
+
+        background:
+            #100303;
+
+        color:
+            rgba(255,255,255,.6);
+
+        padding:
+            70px 0 25px;
+    }
+
+
+    .footer-brand {
+
+        font-family:
+            "Playfair Display",
+            serif;
+
+        font-size:
+            25px;
+
+        color:
+            white;
+
+        margin-bottom:
+            12px;
+    }
+
+
+    footer h5 {
+
+        color:
+            white;
+
+        font-size:
+            14px;
+
+        margin-bottom:
+            20px;
+    }
+
+
+    .footer-link {
+
+        display:
+            block;
+
+        color:
+            rgba(255,255,255,.55);
+
+        font-size:
+            12px;
+
+        margin-bottom:
+            9px;
+
+        transition:
+            var(--transition);
+    }
+
+
+    .footer-link:hover {
+
+        color:
+            var(--gold);
+
+        padding-left:
+            5px;
+    }
+
+
+    .social-row {
+
+        display:
+            flex;
+
+        gap:
+            9px;
+
+        margin-top:
+            20px;
+    }
+
+
+    .social {
+
+        width:
+            42px;
+
+        height:
+            42px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        border:
+            1px solid
+            rgba(255,255,255,.12);
+
+        border-radius:
+            50%;
+
+        color:
+            white;
+
+        transition:
+            var(--transition);
+    }
+
+
+    .social:hover {
+
+        color:
+            var(--gold);
+
+        border-color:
+            var(--gold);
+
+        transform:
+            translateY(-4px);
+    }
+
+
+    .footer-bottom {
+
+        border-top:
+            1px solid
+            rgba(255,255,255,.08);
+
+        margin-top:
+            50px;
+
+        padding-top:
+            22px;
+
+        text-align:
+            center;
+
+        font-size:
+            11px;
+    }
+
+
+    /* =====================================================
+       SCROLL TOP
+    ====================================================== */
+
+    #scrollTop {
+
+        position:
+            fixed;
+
+        right:
+            25px;
+
+        bottom:
+            25px;
+
+        width:
+            48px;
+
+        height:
+            48px;
+
+        border:
+            0;
+
+        border-radius:
+            50%;
+
+        background:
+            var(--wine);
+
+        color:
+            white;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        z-index:
+            4000;
+
+        opacity:
+            0;
+
+        visibility:
+            hidden;
+
+        transform:
+            translateY(20px);
+
+        transition:
+            var(--transition);
+
+        box-shadow:
+            0 10px 25px rgba(0,0,0,.2);
+    }
+
+
+    #scrollTop.visible {
+
+        opacity:
+            1;
+
+        visibility:
+            visible;
+
+        transform:
+            translateY(0);
+    }
+
+
+    #scrollTop:hover {
+
+        background:
+            var(--gold);
+
+        color:
+            #222;
+
+        transform:
+            translateY(-5px);
+    }
+
+
+    /* =====================================================
+       REVEAL ANIMATION
+    ====================================================== */
+
+    .reveal {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(30px);
+
+        transition:
+            opacity .8s ease,
+            transform .8s ease;
+    }
+
+
+    .reveal.visible {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media (max-width: 991px) {
+
+        .main-navbar {
+
+            background:
+                rgba(20,7,7,.94);
+        }
+
+
+        .navbar-collapse {
+
+            margin-top:
+                15px;
+
+            background:
+                rgba(20,7,7,.98);
+
+            border-radius:
+                15px;
+
+            padding:
+                12px;
+        }
+
+
+        .scrolled .navbar-collapse {
+
+            background:
+                rgba(255,253,248,.98);
+        }
+
+
+        .hero {
+
+            min-height:
+                auto;
+        }
+
+
+        .hero-content {
+
+            padding:
+                150px 0 80px;
+        }
+
+
+        .hero-book-wrapper {
+
+            margin-top:
+                70px;
+        }
+
+
+        .book-info {
+
+            padding-left:
+                0;
+
+            margin-top:
+                50px;
+        }
+
+
+        .author-profile {
+
+            grid-template-columns:
+                1fr;
+        }
+
+
+        .author-placeholder {
+
+            max-width:
+                300px;
+
+            margin:
+                auto;
+        }
+    }
+
+
+    @media (max-width: 767px) {
+
+        .section {
+
+            padding:
+                75px 0;
+        }
+
+
+        .hero h1 {
+
+            font-size:
+                3.1rem;
+        }
+
+
+        .book-stage {
+
+            min-height:
+                470px;
+        }
+
+
+        .book-card {
+
+            width:
+                270px;
+        }
+
+
+        .book-meta {
+
+            grid-template-columns:
+                1fr;
+        }
+
+
+        .about-grid {
+
+            grid-template-columns:
+                1fr;
+        }
+
+
+        .identity-list {
+
+            grid-template-columns:
+                1fr;
+        }
+
+
+        .contact-links {
+
+            grid-template-columns:
+                1fr;
+        }
+
+
+        .stat-item {
+
+            border-right:
+                0;
+
+            border-bottom:
+                1px solid
+                var(--border);
+        }
+
+
+        .stat-item:last-child {
+
+            border-bottom:
+                0;
+        }
+
+
+        .floating-card {
+
+            display:
+                none;
+        }
+    }
+
+
+    @media (max-width: 480px) {
+
+        .hero-buttons {
+
+            flex-direction:
+                column;
+        }
+
+
+        .btn-premium {
+
+            justify-content:
+                center;
+
+            width:
+                100%;
+        }
+
+
+        .contact-card {
+
+            padding:
+                28px 20px;
+        }
+
+
+        .book-title {
+
+            font-size:
+                2.3rem;
+        }
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================== -->
+
+<nav class="navbar navbar-expand-lg main-navbar" id="mainNavbar">
+
+
+<div class="container">
+
+    <a href="#home" class="brand">
+
+        <span class="brand-mark">
+            <i class="fa-solid fa-feather-pointed"></i>
+        </span>
+
+        <span>
+            आदर्श शुक्ला
+        </span>
+
+    </a>
+
+
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#mainMenu"
+    >
+
+        <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+
+    <div
+        class="collapse navbar-collapse"
+        id="mainMenu"
+    >
+
+        <ul class="navbar-nav ml-auto align-items-lg-center">
+
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom" href="#home">
+                    होम
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom" href="#book">
+                    पुस्तक
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom" href="#about">
+                    मेरे बारे में
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom" href="#skills">
+                    Skills
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom" href="#projects">
+                    Projects
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link nav-link-custom" href="#faq">
+                    FAQ
+                </a>
+            </li>
+
+            <li class="nav-item ml-lg-2">
+                <a
+                    class="nav-link nav-link-custom nav-cta"
+                    href="#contact"
+                >
+                    संपर्क करें
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+
+</nav>
+
+<!-- =========================================================
+     HERO SECTION
+========================================================== -->
+
+<header class="hero" id="home">
+
+
+<div class="hero-glow"></div>
+
+<div class="container hero-content">
+
+    <div class="row align-items-center">
+
+        <div class="col-lg-7">
+
+            <div class="eyebrow">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Official Personal Portfolio
+
+            </div>
+
+
+            <h1>
+
+                आदर्श शुक्ला
+
+
+            </h1>
+
+
+            <div class="hero-handle">
+
+                <i class="fa-solid fa-at"></i>
+
+                theadarshshukla
+
+            </div>
+
+
+            <p class="hero-subtitle mt-3">
+
+                B.Tech Computer & Data Science student,
+                Software Developer, Data Analyst, Hindi Poet,
+                Writer और <strong>“इलाहाबाद की संगिनी”</strong>
+                के लेखक।
+
+                तकनीक के logical world और साहित्य की भावनात्मक
+                दुनिया के बीच अपनी पहचान बनाने की एक सतत यात्रा।
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#book"
+                    class="btn-premium btn-gold"
+                >
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    मेरी पुस्तक देखें
+
+                </a>
+
+
+                <a
+                    href="#about"
+                    class="btn-premium btn-outline"
+                >
+
+                    <i class="fa-solid fa-user"></i>
+
+                    मेरे बारे में
+
+                </a>
+
+
+                <a
+                    href="#projects"
+                    class="btn-premium btn-outline"
+                >
+
+                    <i class="fa-solid fa-code"></i>
+
+                    Projects
+
+                </a>
+
+            </div>
+
+
+            <div class="hero-tags">
+
+                <span class="hero-tag">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    Software Developer
+                </span>
+
+                <span class="hero-tag">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Data Analyst
+                </span>
+
+                <span class="hero-tag">
+                    <i class="fa-solid fa-feather"></i>
+                    Hindi Writer
+                </span>
+
+                <span class="hero-tag">
+                    <i class="fa-solid fa-brain"></i>
+                    AI & Prompt Engineering
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-5">
+
+            <div class="hero-book-wrapper">
+
+                <div class="hero-book">
+
+                    <a href="#book">
+
+                        <img
+                            src="images/book2/FrontCover.png"
+                            alt="इलाहाबाद की संगिनी पुस्तक का कवर"
+                        >
+
+                    </a>
+
+                </div>
+
+
+                <div class="floating-card one">
+
+                    <strong>
+                        2026
+                    </strong>
+
+                    Publication Year
+
+                </div>
+
+
+                <div class="floating-card two">
+
+                    <strong>
+                        ISBN
+                    </strong>
+
+                    9789334496499
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</header>
+
+<!-- =========================================================
+     QUICK STATS
+========================================================== -->
+
+<section class="stats-section">
+
+
+<div class="container">
+
+    <div class="row no-gutters">
+
+        <div class="col-6 col-md-3">
+
+            <div class="stat-item">
+
+                <div class="stat-number">
+                    2026
+                </div>
+
+                <div class="stat-label">
+                    पुस्तक प्रकाशन वर्ष
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-md-3">
+
+            <div class="stat-item">
+
+                <div class="stat-number">
+                    B.Tech
+                </div>
+
+                <div class="stat-label">
+                    Computer & Data Science
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-md-3">
+
+            <div class="stat-item">
+
+                <div class="stat-number">
+                    85%
+                </div>
+
+                <div class="stat-label">
+                    ADCA
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-md-3">
+
+            <div class="stat-item">
+
+                <div class="stat-number">
+                    Q141392257
+                </div>
+
+                <div class="stat-label">
+                    Wikidata Record
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     BOOK SECTION
+========================================================== -->
+
+<section class="section book-section" id="book">
+
+
+<div class="container">
+
+    <div class="text-center reveal">
+
+        <div class="section-kicker">
+            Literary Work
+        </div>
+
+        <h2 class="section-heading">
+            मेरी मौलिक कृति
+            <span>“इलाहाबाद की संगिनी”</span>
+        </h2>
+
+        <p class="section-description mx-auto">
+
+            एक साहित्यिक कृति, जिसमें भावनाओं, स्मृतियों,
+            मानवीय संबंधों और इलाहाबाद की सांस्कृतिक पृष्ठभूमि
+            को एक रचनात्मक कथा के रूप में प्रस्तुत किया गया है।
+
+        </p>
+
+    </div>
+
+
+    <div class="row align-items-center mt-5">
+
+        <!-- BOOK COVER -->
+
+        <div class="col-lg-5">
+
+            <div class="book-stage reveal">
+
+                <div>
+
+                    <div class="book-card">
+
+                        <a
+                            href="v-pdf.html"
+                            title="इलाहाबाद की संगिनी — Flipbook"
+                        >
+
+                            <img
+                                src="images/book2/FrontCover.png"
+                                alt="इलाहाबाद की संगिनी Front Cover"
+                            >
+
+                        </a>
+
+                    </div>
+
+                    <div class="book-shadow"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="text-center">
+
+                <a
+                    href="v-pdf.html"
+                    class="btn-premium btn-gold"
+                >
+
+                    <i class="fa-solid fa-book-open-reader"></i>
+
+                    Interactive Flipbook खोलें
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- BOOK DETAILS -->
+
+        <div class="col-lg-7">
+
+            <div class="book-info reveal">
+
+                <div class="section-kicker">
+                    Author's Featured Work
+                </div>
+
+
+                <h2 class="book-title">
+                    इलाहाबाद की संगिनी
+                </h2>
+
+
+                <p class="book-subtitle">
+
+                    एक संवेदनशील हिंदी साहित्यिक कृति,
+                    जिसमें स्मृतियों, भावनाओं, मानवीय रिश्तों,
+                    प्रेम, संघर्ष और शहर की सांस्कृतिक आत्मा
+                    को कथा के माध्यम से अनुभव किया जा सकता है।
+
+                </p>
+
+
+                <div class="book-meta">
+
+                    <div class="meta-box">
+
+                        <span class="meta-label">
+                            लेखक
+                        </span>
+
+                        <span class="meta-value">
+                            आदर्श शुक्ला
+                        </span>
+
+                    </div>
+
+
+                    <div class="meta-box">
+
+                        <span class="meta-label">
+                            भाषा
+                        </span>
+
+                        <span class="meta-value">
+                            हिंदी
+                        </span>
+
+                    </div>
+
+
+                    <div class="meta-box">
+
+                        <span class="meta-label">
+                            ISBN
+                        </span>
+
+                        <span class="meta-value">
+                            9789334496499
+                        </span>
+
+                    </div>
+
+
+                    <div class="meta-box">
+
+                        <span class="meta-label">
+                            प्रकाशन वर्ष
+                        </span>
+
+                        <span class="meta-value">
+                            2026
+                        </span>
+
+                    </div>
+
+
+                    <div class="meta-box">
+
+                        <span class="meta-label">
+                            Format
+                        </span>
+
+                        <span class="meta-value">
+                            Hindi Literary Work
+                        </span>
+
+                    </div>
+
+
+                    <div class="meta-box">
+
+                        <span class="meta-label">
+                            Digital Reading
+                        </span>
+
+                        <span class="meta-value">
+                            Interactive Flipbook
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="literary-box">
+
+                    <p>
+
+                        <strong>“इलाहाबाद की संगिनी”</strong>
+                        आदर्श शुक्ला की मौलिक हिंदी साहित्यिक
+                        रचना है। यह कृति केवल एक कथा के रूप में
+                        नहीं, बल्कि स्मृतियों, भावनाओं और मानवीय
+                        अनुभवों को शब्दों में संजोने के प्रयास
+                        के रूप में प्रस्तुत की गई है।
+
+                    </p>
+
+                </div>
+
+
+                <!-- AMAZON / KDP -->
+
+                <div class="amazon-card">
+
+                    <div class="amazon-title">
+
+                        <i class="fa-brands fa-amazon"></i>
+
+                        Amazon & Kindle Direct Publishing
+
+                    </div>
+
+
+                    <p>
+
+                        पुस्तक के लिए Amazon और Kindle Direct
+                        Publishing (KDP) से संबंधित publication
+                        information यहाँ उपलब्ध कराई जा सकती है।
+                        Exact product listing URL को नीचे दिए
+                        button में जोड़ें ताकि visitor सीधे
+                        official book listing पर जा सके।
+
+                    </p>
+
+
+                    <div class="store-buttons">
+
+                        <!--
+                            IMPORTANT:
+                            AMAZON_BOOK_URL को नीचे JavaScript
+                            में अपने exact Amazon product URL से बदलें।
+                        -->
+
+                        <a
+                            href="#"
+                            id="amazonBookButton"
+                            class="store-btn primary"
+                            target="_blank"
+                            rel="noopener"
+                        >
+
+                            <i class="fa-brands fa-amazon"></i>
+
+                            Amazon पर पुस्तक देखें
+
+                        </a>
+
+
+                        <a
+                            href="#"
+                            class="store-btn"
+                            id="kindleButton"
+                            target="_blank"
+                            rel="noopener"
+                        >
+
+                            <i class="fa-solid fa-tablet-screen-button"></i>
+
+                            Kindle / KDP
+
+                        </a>
+
+
+                        <a
+                            href="v-pdf.html"
+                            class="store-btn"
+                        >
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                            Online Flipbook
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     BOOK INFORMATION
+========================================================== -->
+
+<section class="section bg-white">
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-4 reveal">
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    <i class="fa-solid fa-feather-pointed"></i>
+                </div>
+
+                <h3>
+                    साहित्यिक पहचान
+                </h3>
+
+                <p class="text-muted small">
+
+                    आदर्श शुक्ला तकनीकी शिक्षा के साथ-साथ
+                    हिंदी कविता, कहानी और रचनात्मक लेखन में
+                    भी रुचि रखते हैं।
+
+                </p>
+
+                <ul class="info-list">
+
+                    <li>
+                        <strong>भूमिका:</strong>
+                        लेखक एवं कवि
+                    </li>
+
+                    <li>
+                        <strong>प्रमुख कृति:</strong>
+                        इलाहाबाद की संगिनी
+                    </li>
+
+                    <li>
+                        <strong>भाषा:</strong>
+                        हिंदी
+                    </li>
+
+                    <li>
+                        <strong>लेखन:</strong>
+                        कविता, कथा एवं साहित्य
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 reveal">
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+
+                <h3>
+                    पुस्तक की विशेषताएँ
+                </h3>
+
+                <p class="text-muted small">
+
+                    यह पुस्तक साहित्यिक संवेदना और
+                    रचनात्मक कथा-वाचन को केंद्र में रखती है।
+
+                </p>
+
+                <ul class="info-list">
+
+                    <li>
+                        मानवीय भावनाएँ
+                    </li>
+
+                    <li>
+                        स्मृतियाँ एवं संबंध
+                    </li>
+
+                    <li>
+                        प्रेम एवं संघर्ष
+                    </li>
+
+                    <li>
+                        इलाहाबाद की सांस्कृतिक पृष्ठभूमि
+                    </li>
+
+                    <li>
+                        हिंदी साहित्यिक अभिव्यक्ति
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 reveal">
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+
+                <h3>
+                    Digital Reading
+                </h3>
+
+                <p class="text-muted small">
+
+                    वेबसाइट पर पुस्तक को interactive
+                    digital flipbook के माध्यम से पढ़ने
+                    की सुविधा जोड़ी गई है।
+
+                </p>
+
+                <ul class="info-list">
+
+                    <li>
+                        Interactive page experience
+                    </li>
+
+                    <li>
+                        Desktop friendly
+                    </li>
+
+                    <li>
+                        Mobile friendly
+                    </li>
+
+                    <li>
+                        Dedicated book page
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     ABOUT SECTION
+========================================================== -->
+
+<section class="section about-section" id="about">
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-8 reveal">
+
+            <div class="section-kicker">
+                About The Author
+            </div>
+
+            <h2 class="section-heading">
+                तकनीक और साहित्य के बीच
+                <span>एक बहुआयामी पहचान</span>
+            </h2>
+
+            <p class="section-description">
+
+                आदर्श शुक्ला एक B.Tech Computer & Data Science
+                student हैं, जिनकी रुचि software development,
+                data analytics, artificial intelligence और
+                digital technologies के साथ-साथ हिंदी साहित्य,
+                कविता और रचनात्मक लेखन में भी है।
+
+            </p>
+
+
+            <p class="section-description mt-3">
+
+                उनकी प्रोफेशनल यात्रा में programming, data
+                analysis, web technologies और modern AI tools
+                शामिल हैं, जबकि उनकी रचनात्मक यात्रा साहित्य,
+                कविता और storytelling से जुड़ी हुई है।
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="about-grid">
+
+        <!-- PERSONAL -->
+
+        <div class="info-card reveal">
+
+            <div class="info-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <h3>
+                व्यक्तिगत परिचय
+            </h3>
+
+            <ul class="info-list">
+
+                <li>
+                    <strong>नाम:</strong>
+                    आदर्श शुक्ला
+                </li>
+
+                <li>
+                    <strong>English Name:</strong>
+                    Adarsh Shukla
+                </li>
+
+                <li>
+                    <strong>Public Handle:</strong>
+                    @theadarshshukla
+                </li>
+
+                <li>
+                    <strong>Professional Identity:</strong>
+                    Programmer • Poet • Developer • Writer
+                </li>
+
+                <li>
+                    <strong>Interests:</strong>
+                    Technology, Literature, AI, Writing
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- EDUCATION -->
+
+        <div class="info-card reveal">
+
+            <div class="info-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <h3>
+                शिक्षा
+            </h3>
+
+            <ul class="info-list">
+
+                <li>
+                    <strong>Degree:</strong>
+                    B.Tech
+                </li>
+
+                <li>
+                    <strong>Field:</strong>
+                    Computer & Data Science
+                </li>
+
+                <li>
+                    <strong>University:</strong>
+                    Maharishi University of Information
+                    Technology
+                </li>
+
+                <li>
+                    <strong>Campus:</strong>
+                    Noida
+                </li>
+
+                <li>
+                    <strong>Additional Qualification:</strong>
+                    ADCA — 85%
+                </li>
+
+                <li>
+                    <strong>Schooling:</strong>
+                    CBSE Science Background
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- PROFESSIONAL -->
+
+        <div class="info-card reveal">
+
+            <div class="info-icon">
+                <i class="fa-solid fa-briefcase"></i>
+            </div>
+
+            <h3>
+                Professional Interests
+            </h3>
+
+            <ul class="info-list">
+
+                <li>
+                    Software Development
+                </li>
+
+                <li>
+                    Data Analytics
+                </li>
+
+                <li>
+                    Artificial Intelligence
+                </li>
+
+                <li>
+                    Web Development
+                </li>
+
+                <li>
+                    Digital Storytelling
+                </li>
+
+                <li>
+                    Prompt Engineering
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- LITERATURE -->
+
+        <div class="info-card reveal">
+
+            <div class="info-icon">
+                <i class="fa-solid fa-feather"></i>
+            </div>
+
+            <h3>
+                साहित्यिक रुचियाँ
+            </h3>
+
+            <ul class="info-list">
+
+                <li>
+                    हिंदी कविता
+                </li>
+
+                <li>
+                    कहानी एवं गद्य लेखन
+                </li>
+
+                <li>
+                    साहित्यिक डिजिटल प्लेटफॉर्म
+                </li>
+
+                <li>
+                    पुस्तक लेखन
+                </li>
+
+                <li>
+                    Creative Storytelling
+                </li>
+
+                <li>
+                    Hindi Literature
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     AUTHOR JOURNEY TIMELINE
+========================================================== -->
+
+<section class="section bg-white">
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-6 reveal">
+
+            <div class="section-kicker">
+                Journey
+            </div>
+
+            <h2 class="section-heading">
+                मेरी
+                <span>शैक्षणिक एवं रचनात्मक यात्रा</span>
+            </h2>
+
+            <p class="section-description">
+
+                तकनीकी शिक्षा से लेकर software development,
+                data science और literary writing तक की
+                बहुआयामी यात्रा।
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="timeline">
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-year">
+                EDUCATION
+            </div>
+
+            <div class="timeline-title">
+                Computer & Data Science की दिशा
+            </div>
+
+            <p class="timeline-text">
+
+                B.Tech Computer & Data Science के माध्यम से
+                programming, data structures, databases,
+                operating systems और data-driven technologies
+                का अध्ययन।
+
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-year">
+                SKILLS
+            </div>
+
+            <div class="timeline-title">
+                Programming & Development
+            </div>
+
+            <p class="timeline-text">
+
+                Python, Java, C++, JavaScript, SQL तथा modern
+                web development technologies के साथ practical
+                projects पर काम।
+
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-year">
+                DATA
+            </div>
+
+            <div class="timeline-title">
+                Data Analytics
+            </div>
+
+            <p class="timeline-text">
+
+                Power BI, DAX, Pandas, NumPy, MySQL और
+                visualization tools के माध्यम से data analytics
+                projects पर कार्य।
+
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-year">
+                LITERATURE
+            </div>
+
+            <div class="timeline-title">
+                लेखन और साहित्य
+            </div>
+
+            <p class="timeline-text">
+
+                कविता, कहानी और रचनात्मक लेखन के माध्यम से
+                भावनाओं और अनुभवों को शब्द देने की शुरुआत।
+
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-year">
+                2026
+            </div>
+
+            <div class="timeline-title">
+                “इलाहाबाद की संगिनी”
+            </div>
+
+            <p class="timeline-text">
+
+                मौलिक हिंदी साहित्यिक कृति के रूप में
+                “इलाहाबाद की संगिनी” को प्रकाशित करने की
+                रचनात्मक यात्रा।
+
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-year">
+                PRESENT
+            </div>
+
+            <div class="timeline-title">
+                Technology + Literature
+            </div>
+
+            <p class="timeline-text">
+
+                Software development, data science, AI और
+                साहित्यिक लेखन को एक ही professional identity
+                में आगे बढ़ाने का प्रयास।
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     SKILLS
+========================================================== -->
+
+<section class="section section-dark" id="skills">
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-8 reveal">
+
+            <div class="section-kicker">
+                Technical Profile
+            </div>
+
+            <h2 class="section-heading">
+                Technology,
+                <span>Data & Development</span>
+            </h2>
+
+            <p class="section-description">
+
+                Programming, data analytics, web development,
+                databases, visualization और modern AI tools
+                से संबंधित तकनीकी रुचियाँ और skills।
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="row mt-5">
+
+        <div class="col-lg-4 mb-4 reveal">
+
+            <div class="tech-card">
+
+                <h4>
+                    <i class="fa-solid fa-code"></i>
+                    Programming
+                </h4>
+
+                <p>
+
+                    Python, Java, C++, JavaScript, SQL,
+                    problem solving, programming fundamentals
+                    और software development concepts।
+
+                </p>
+
+                <div class="skill-cloud">
+
+                    <span class="skill-pill">Python</span>
+                    <span class="skill-pill">Java</span>
+                    <span class="skill-pill">C++</span>
+                    <span class="skill-pill">JavaScript</span>
+                    <span class="skill-pill">SQL</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 mb-4 reveal">
+
+            <div class="tech-card">
+
+                <h4>
+                    <i class="fa-solid fa-chart-column"></i>
+                    Data Science
+                </h4>
+
+                <p>
+
+                    Data cleaning, analysis, visualization,
+                    dashboards, DAX और machine-learning
+                    fundamentals।
+
+                </p>
+
+                <div class="skill-cloud">
+
+                    <span class="skill-pill">Power BI</span>
+                    <span class="skill-pill">DAX</span>
+                    <span class="skill-pill">Pandas</span>
+                    <span class="skill-pill">NumPy</span>
+                    <span class="skill-pill">Scikit-Learn</span>
+                    <span class="skill-pill">MySQL</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 mb-4 reveal">
+
+            <div class="tech-card">
+
+                <h4>
+                    <i class="fa-solid fa-globe"></i>
+                    Web Development
+                </h4>
+
+                <p>
+
+                    Responsive interfaces, component-based
+                    development, modern styling और deployment
+                    technologies में रुचि।
+
+                </p>
+
+                <div class="skill-cloud">
+
+                    <span class="skill-pill">HTML5</span>
+                    <span class="skill-pill">CSS3</span>
+                    <span class="skill-pill">React</span>
+                    <span class="skill-pill">Next.js</span>
+                    <span class="skill-pill">Tailwind</span>
+                    <span class="skill-pill">Bootstrap</span>
+                    <span class="skill-pill">SCSS</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 mb-4 reveal">
+
+            <div class="tech-card">
+
+                <h4>
+                    <i class="fa-solid fa-database"></i>
+                    Database
+                </h4>
+
+                <p>
+
+                    Relational database concepts, SQL queries,
+                    MongoDB और CRUD-based application workflows
+                    में practical learning।
+
+                </p>
+
+                <div class="skill-cloud">
+
+                    <span class="skill-pill">MySQL</span>
+                    <span class="skill-pill">MongoDB</span>
+                    <span class="skill-pill">SQL</span>
+                    <span class="skill-pill">CRUD</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 mb-4 reveal">
+
+            <div class="tech-card">
+
+                <h4>
+                    <i class="fa-solid fa-robot"></i>
+                    AI & Prompt Engineering
+                </h4>
+
+                <p>
+
+                    Generative AI tools, LLM interaction,
+                    prompt design और AI-assisted development
+                    workflows का अध्ययन।
+
+                </p>
+
+                <div class="skill-cloud">
+
+                    <span class="skill-pill">AI</span>
+                    <span class="skill-pill">LLMs</span>
+                    <span class="skill-pill">Prompt Engineering</span>
+                    <span class="skill-pill">AI Tools</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 mb-4 reveal">
+
+            <div class="tech-card">
+
+                <h4>
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    Tools & Deployment
+                </h4>
+
+                <p>
+
+                    Git, GitHub, VS Code, Vercel, Netlify,
+                    Cloudflare तथा modern development workflow।
+
+                </p>
+
+                <div class="skill-cloud">
+
+                    <span class="skill-pill">Git</span>
+                    <span class="skill-pill">GitHub</span>
+                    <span class="skill-pill">VS Code</span>
+                    <span class="skill-pill">Vercel</span>
+                    <span class="skill-pill">Netlify</span>
+                    <span class="skill-pill">Cloudflare</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     PROJECTS
+========================================================== -->
+
+<section class="section projects-section" id="projects">
+
+
+<div class="container">
+
+    <div class="text-center reveal">
+
+        <div class="section-kicker">
+            Selected Projects
+        </div>
+
+        <h2 class="section-heading">
+            प्रमुख
+            <span>Projects & Work</span>
+        </h2>
+
+        <p class="section-description mx-auto">
+
+            Academic learning, practical programming और
+            data analytics से जुड़े selected projects।
+
+        </p>
+
+    </div>
+
+
+    <div class="row mt-5">
+
+
+        <!-- PROJECT 1 -->
+
+        <div class="col-lg-6 mb-4 reveal">
+
+            <div class="project-card">
+
+                <div class="project-icon">
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                </div>
+
+                <h3>
+                    IPL Analytics Dashboard
+                </h3>
+
+                <p>
+
+                    Cricket match datasets को analyze करके
+                    Power BI आधारित interactive analytics
+                    dashboard तैयार करने की दिशा में किया गया
+                    project। इसमें data transformation,
+                    visualization और DAX-based calculations
+                    जैसे concepts शामिल हैं।
+
+                </p>
+
+                <div class="project-tags">
+
+                    <span class="project-tag">
+                        Power BI
+                    </span>
+
+                    <span class="project-tag">
+                        DAX
+                    </span>
+
+                    <span class="project-tag">
+                        Data Analytics
+                    </span>
+
+                    <span class="project-tag">
+                        Visualization
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 2 -->
+
+        <div class="col-lg-6 mb-4 reveal">
+
+            <div class="project-card">
+
+                <div class="project-icon">
+
+                    <i class="fa-solid fa-eye"></i>
+
+                </div>
+
+                <h3>
+                    Computer Vision Anti-Sleep Alarm
+                </h3>
+
+                <p>
+
+                    Python, OpenCV और Pygame के उपयोग से
+                    computer vision आधारित alert system।
+                    Project का उद्देश्य visual cues के आधार
+                    पर user alertness से संबंधित experimental
+                    monitoring workflow बनाना है।
+
+                </p>
+
+                <div class="project-tags">
+
+                    <span class="project-tag">
+                        Python
+                    </span>
+
+                    <span class="project-tag">
+                        OpenCV
+                    </span>
+
+                    <span class="project-tag">
+                        Pygame
+                    </span>
+
+                    <span class="project-tag">
+                        Computer Vision
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 3 -->
+
+        <div class="col-lg-6 mb-4 reveal">
+
+            <div class="project-card">
+
+                <div class="project-icon">
+
+                    <i class="fa-solid fa-comments"></i>
+
+                </div>
+
+                <h3>
+                    VibeChat
+                </h3>
+
+                <p>
+
+                    Modern messaging experience की दिशा में
+                    विकसित किया जा रहा WhatsApp-style chat
+                    application concept, जिसमें authentication,
+                    conversations, profile और future AI-powered
+                    communication features जैसी possibilities
+                    शामिल हैं।
+
+                </p>
+
+                <div class="project-tags">
+
+                    <span class="project-tag">
+                        Flutter
+                    </span>
+
+                    <span class="project-tag">
+                        Firebase
+                    </span>
+
+                    <span class="project-tag">
+                        UI/UX
+                    </span>
+
+                    <span class="project-tag">
+                        Mobile Development
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 4 -->
+
+        <div class="col-lg-6 mb-4 reveal">
+
+            <div class="project-card">
+
+                <div class="project-icon">
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                </div>
+
+                <h3>
+                    PayFlow Pro
+                </h3>
+
+                <p>
+
+                    Responsive fintech interface concept,
+                    जिसमें wallet, recharge, bills, transactions,
+                    profile और settings जैसी screens को modern
+                    front-end experience के रूप में organize
+                    किया गया है।
+
+                </p>
+
+                <div class="project-tags">
+
+                    <span class="project-tag">
+                        HTML
+                    </span>
+
+                    <span class="project-tag">
+                        CSS
+                    </span>
+
+                    <span class="project-tag">
+                        JavaScript
+                    </span>
+
+                    <span class="project-tag">
+                        LocalStorage
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 5 -->
+
+        <div class="col-lg-6 mb-4 reveal">
+
+            <div class="project-card">
+
+                <div class="project-icon">
+
+                    <i class="fa-solid fa-scale-balanced"></i>
+
+                </div>
+
+                <h3>
+                    AI Legal Assistant
+                </h3>
+
+                <p>
+
+                    Legal information workflows के लिए
+                    AI-assisted application concept जिसमें
+                    document upload, summaries, chatbot,
+                    reports और अन्य productivity-oriented
+                    features पर काम किया गया है।
+
+                </p>
+
+                <div class="project-tags">
+
+                    <span class="project-tag">
+                        Django
+                    </span>
+
+                    <span class="project-tag">
+                        Python
+                    </span>
+
+                    <span class="project-tag">
+                        AI
+                    </span>
+
+                    <span class="project-tag">
+                        REST API
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 6 -->
+
+        <div class="col-lg-6 mb-4 reveal">
+
+            <div class="project-card">
+
+                <div class="project-icon">
+
+                    <i class="fa-solid fa-pen-nib"></i>
+
+                </div>
+
+                <h3>
+                    Digital Literary Portfolio
+                </h3>
+
+                <p>
+
+                    Personal authorship, Hindi writing,
+                    “इलाहाबाद की संगिनी” और digital reading
+                    experience को एक modern online literary
+                    identity में प्रस्तुत करने के लिए तैयार
+                    किया गया portfolio ecosystem।
+
+                </p>
+
+                <div class="project-tags">
+
+                    <span class="project-tag">
+                        HTML5
+                    </span>
+
+                    <span class="project-tag">
+                        CSS3
+                    </span>
+
+                    <span class="project-tag">
+                        JavaScript
+                    </span>
+
+                    <span class="project-tag">
+                        Digital Publishing
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     LITERARY STATEMENT
+========================================================== -->
+
+<section class="section literary-section">
+
+
+<div class="container">
+
+    <div class="text-center reveal">
+
+        <div class="quote-mark">
+            ❝
+        </div>
+
+        <p class="quote">
+
+            शब्द केवल लिखे नहीं जाते,
+            उन्हें जिया भी जाता है।
+
+            साहित्य मेरे लिए केवल अभिव्यक्ति नहीं,
+            बल्कि स्मृतियों, भावनाओं और अनुभवों
+            को सुरक्षित रखने का एक माध्यम है।
+
+        </p>
+
+        <div class="mt-4">
+
+            <span
+                style="
+                    color:#c9a227;
+                    letter-spacing:2px;
+                    font-size:12px;
+                "
+            >
+                — आदर्श शुक्ला
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     AUTHOR PROFILE
+========================================================== -->
+
+<section class="section bg-white">
+
+
+<div class="container">
+
+    <div class="author-profile">
+
+        <div class="author-placeholder reveal">
+
+            <i class="fa-solid fa-feather-pointed"></i>
+
+        </div>
+
+
+        <div class="author-copy reveal">
+
+            <div class="section-kicker">
+                Author Profile
+            </div>
+
+            <h3>
+                Adarsh Shukla
+            </h3>
+
+            <p>
+
+                आदर्श शुक्ला एक technology learner,
+                developer, data enthusiast और Hindi
+                writer हैं। उनकी professional identity
+                programming और data science से जुड़ी है,
+                जबकि उनकी creative identity कविता,
+                storytelling और पुस्तक लेखन से।
+
+            </p>
+
+
+            <p>
+
+                “इलाहाबाद की संगिनी” उनकी साहित्यिक यात्रा
+                की एक महत्वपूर्ण मौलिक कृति है, जिसे digital
+                platform पर भी प्रस्तुत करने के लिए यह
+                dedicated portfolio तैयार किया गया है।
+
+            </p>
+
+
+            <div class="identity-list">
+
+                <div class="identity-item">
+
+                    <i class="fa-solid fa-code"></i>
+
+                    Software Developer
+
+                </div>
+
+
+                <div class="identity-item">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    Data Analyst
+
+                </div>
+
+
+                <div class="identity-item">
+
+                    <i class="fa-solid fa-feather"></i>
+
+                    Hindi Poet
+
+                </div>
+
+
+                <div class="identity-item">
+
+                    <i class="fa-solid fa-book"></i>
+
+                    Author
+
+                </div>
+
+
+                <div class="identity-item">
+
+                    <i class="fa-solid fa-brain"></i>
+
+                    AI Explorer
+
+                </div>
+
+
+                <div class="identity-item">
+
+                    <i class="fa-solid fa-pen-nib"></i>
+
+                    Writer
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     ACHIEVEMENTS
+========================================================== -->
+
+<section class="section about-section">
+
+
+<div class="container">
+
+    <div class="text-center reveal">
+
+        <div class="section-kicker">
+            Highlights
+        </div>
+
+        <h2 class="section-heading">
+            उपलब्धियाँ एवं
+            <span>Professional Highlights</span>
+        </h2>
+
+    </div>
+
+
+    <div class="row mt-5">
+
+        <div class="col-md-6 col-lg-3 mb-4 reveal">
+
+            <div class="achievement-card">
+
+                <div class="achievement-icon">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+
+                <h4>
+                    Published Work
+                </h4>
+
+                <p>
+                    “इलाहाबाद की संगिनी”
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-3 mb-4 reveal">
+
+            <div class="achievement-card">
+
+                <div class="achievement-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <h4>
+                    B.Tech Student
+                </h4>
+
+                <p>
+                    Computer & Data Science
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-3 mb-4 reveal">
+
+            <div class="achievement-card">
+
+                <div class="achievement-icon">
+                    <i class="fa-solid fa-certificate"></i>
+                </div>
+
+                <h4>
+                    ADCA
+                </h4>
+
+                <p>
+                    85% completion score
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-3 mb-4 reveal">
+
+            <div class="achievement-card">
+
+                <div class="achievement-icon">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+
+                <h4>
+                    Campus Ambassador
+                </h4>
+
+                <p>
+                    AllCollegeEvent.com
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     DIGITAL PRESENCE
+========================================================== -->
+
+<section class="section bg-white">
+
+
+<div class="container">
+
+    <div class="row align-items-center">
+
+        <div class="col-lg-7 reveal">
+
+            <div class="section-kicker">
+                Digital Identity
+            </div>
+
+            <h2 class="section-heading">
+                Online
+                <span>Professional Presence</span>
+            </h2>
+
+            <p class="section-description">
+
+                Professional networking, coding repositories,
+                creative identity और digital publishing के
+                लिए विभिन्न platforms का उपयोग।
+
+            </p>
+
+        </div>
+
+        <div class="col-lg-5 reveal">
+
+            <div class="info-card">
+
+                <ul class="info-list">
+
+                    <li>
+                        <strong>Public Handle:</strong>
+                        @theadarshshukla
+                    </li>
+
+                    <li>
+                        <strong>Portfolio:</strong>
+                        adarshshukla.in
+                    </li>
+
+                    <li>
+                        <strong>Portfolio:</strong>
+                        adarshshukla.com
+                    </li>
+
+                    <li>
+                        <strong>Wikidata:</strong>
+                        Q141392257
+                    </li>
+
+                </ul>
+
+
+                <div class="store-buttons mt-3">
+
+                    <a
+                        href="https://github.com/The-AdarshShukla"
+                        target="_blank"
+                        class="store-btn"
+                        style="
+                            background:#111;
+                            color:white;
+                            border-color:#111;
+                        "
+                    >
+
+                        <i class="fa-brands fa-github"></i>
+
+                        GitHub
+
+                    </a>
+
+
+                    <a
+                        href="https://www.linkedin.com/in/theadarshshukla/"
+                        target="_blank"
+                        class="store-btn"
+                        style="
+                            background:#0a66c2;
+                            color:white;
+                            border-color:#0a66c2;
+                        "
+                    >
+
+                        <i class="fa-brands fa-linkedin"></i>
+
+                        LinkedIn
+
+                    </a>
+
+
+                    <a
+                        href="https://www.instagram.com/the_adarshshukla/"
+                        target="_blank"
+                        class="store-btn"
+                        style="
+                            background:#8a3ab9;
+                            color:white;
+                            border-color:#8a3ab9;
+                        "
+                    >
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                        Instagram
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     FAQ
+========================================================== -->
+
+<section class="section" id="faq">
+
+
+<div class="container">
+
+    <div class="text-center reveal">
+
+        <div class="section-kicker">
+            Frequently Asked Questions
+        </div>
+
+        <h2 class="section-heading">
+            Frequently
+            <span>Asked Questions</span>
+        </h2>
+
+    </div>
+
+
+    <div class="row justify-content-center mt-5">
+
+        <div class="col-lg-9">
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+
+                    “इलाहाबाद की संगिनी” क्या है?
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        “इलाहाबाद की संगिनी” आदर्श शुक्ला की
+                        मौलिक हिंदी साहित्यिक कृति है, जिसमें
+                        मानवीय भावनाओं, स्मृतियों, संबंधों,
+                        संघर्ष और इलाहाबाद की सांस्कृतिक
+                        पृष्ठभूमि को कथा के माध्यम से प्रस्तुत
+                        किया गया है।
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+
+                    पुस्तक का ISBN क्या है?
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        इस portfolio में पुस्तक का ISBN
+                        9789334496499 दर्ज किया गया है।
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+
+                    पुस्तक कब प्रकाशित हुई?
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        इस portfolio में publication year
+                        2026 दर्ज किया गया है।
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+
+                    क्या पुस्तक online पढ़ी जा सकती है?
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        हाँ। इस website में “v-pdf.html”
+                        के माध्यम से interactive flipbook
+                        reading experience के लिए button
+                        दिया गया है।
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+
+                    आदर्श शुक्ला क्या करते हैं?
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        आदर्श शुक्ला Computer & Data Science
+                        के B.Tech student हैं और software
+                        development, data analytics, AI,
+                        web development तथा Hindi literature
+                        में रुचि रखते हैं।
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+
+                    क्या यह portfolio author और developer
+                    दोनों identity दिखाता है?
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        हाँ। इस design को जानबूझकर technology
+                        और literature दोनों identities को
+                        एक unified professional profile में
+                        प्रस्तुत करने के लिए बनाया गया है।
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     CONTACT
+========================================================== -->
+
+<section class="section contact-section" id="contact">
+
+
+<div class="container">
+
+    <div class="contact-card reveal">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-7">
+
+                <div class="section-kicker">
+                    Let's Connect
+                </div>
+
+                <h3>
+                    आदर्श शुक्ला से जुड़ें
+                </h3>
+
+                <p>
+
+                    साहित्य, technology, development,
+                    collaboration या professional
+                    opportunities से संबंधित संपर्क के
+                    लिए मेरे online platforms पर आएँ।
+
+                </p>
+
+            </div>
+
+
+            <div class="col-lg-5">
+
+                <div class="contact-links">
+
+                    <a
+                        href="https://github.com/The-AdarshShukla"
+                        target="_blank"
+                        class="contact-link"
+                    >
+
+                        <i class="fa-brands fa-github"></i>
+
+                        GitHub
+
+                    </a>
+
+
+                    <a
+                        href="https://www.linkedin.com/in/theadarshshukla/"
+                        target="_blank"
+                        class="contact-link"
+                    >
+
+                        <i class="fa-brands fa-linkedin"></i>
+
+                        LinkedIn
+
+                    </a>
+
+
+                    <a
+                        href="https://www.instagram.com/the_adarshshukla/"
+                        target="_blank"
+                        class="contact-link"
+                    >
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                        Instagram
+
+                    </a>
+
+
+                    <a
+                        href="mailto:hello@adarshshukla.in"
+                        class="contact-link"
+                    >
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        Email
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================== -->
+
+<footer>
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-5 mb-4">
+
+            <div class="footer-brand">
+                आदर्श शुक्ला
+            </div>
+
+            <p style="
+                font-size:12px;
+                line-height:1.9;
+                max-width:430px;
+            ">
+
+                Programmer • Poet • Developer • Writer
+
+                <br>
+
+                B.Tech Computer & Data Science
+
+                <br>
+
+                Author of “इलाहाबाद की संगिनी”
+
+            </p>
+
+
+            <div class="social-row">
+
+                <a
+                    href="https://github.com/The-AdarshShukla"
+                    target="_blank"
+                    class="social"
+                >
+
+                    <i class="fa-brands fa-github"></i>
+
+                </a>
+
+
+                <a
+                    href="https://www.linkedin.com/in/theadarshshukla/"
+                    target="_blank"
+                    class="social"
+                >
+
+                    <i class="fa-brands fa-linkedin"></i>
+
+                </a>
+
+
+                <a
+                    href="https://www.instagram.com/the_adarshshukla/"
+                    target="_blank"
+                    class="social"
+                >
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+
+
+                <a
+                    href="#book"
+                    class="social"
+                >
+
+                    <i class="fa-solid fa-book"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-lg-2 mb-4">
+
+            <h5>
+                Navigation
+            </h5>
+
+            <a
+                href="#home"
+                class="footer-link"
+            >
+                Home
+            </a>
+
+            <a
+                href="#book"
+                class="footer-link"
+            >
+                Book
+            </a>
+
+            <a
+                href="#about"
+                class="footer-link"
+            >
+                About
+            </a>
+
+            <a
+                href="#skills"
+                class="footer-link"
+            >
+                Skills
+            </a>
+
+            <a
+                href="#projects"
+                class="footer-link"
+            >
+                Projects
+            </a>
+
+        </div>
+
+
+        <div class="col-6 col-lg-2 mb-4">
+
+            <h5>
+                Literary
+            </h5>
+
+            <a
+                href="#book"
+                class="footer-link"
+            >
+                इलाहाबाद की संगिनी
+            </a>
+
+            <a
+                href="v-pdf.html"
+                class="footer-link"
+            >
+                Flipbook
+            </a>
+
+            <a
+                href="#faq"
+                class="footer-link"
+            >
+                FAQ
+            </a>
+
+            <a
+                href="#contact"
+                class="footer-link"
+            >
+                Contact
+            </a>
+
+        </div>
+
+
+        <div class="col-lg-3 mb-4">
+
+            <h5>
+                Digital Identity
+            </h5>
+
+            <p style="
+                font-size:11px;
+                line-height:2;
+            ">
+
+                @theadarshshukla
+
+                <br>
+
+                adarshshukla.in
+
+                <br>
+
+                adarshshukla.com
+
+                <br>
+
+                Wikidata: Q141392257
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p class="mb-0">
+
+            © <span id="currentYear"></span>
+
+            Adarsh Shukla.
+
+            All Rights Reserved.
+
+            <br>
+
+            Designed as an official personal,
+            professional & literary portfolio.
+
+        </p>
+
+    </div>
+
+</div>
+
+
+</footer>
+
+<!-- =========================================================
+     SCROLL TOP
+========================================================== -->
+
+<button
+id="scrollTop"
+title="ऊपर जाएँ"
+aria-label="Scroll to top"
+
+>
+
+
+<i class="fa-solid fa-arrow-up"></i>
+
+
+</button>
+
+<!-- =========================================================
+     JAVASCRIPT LIBRARIES
+========================================================== -->
+
+<script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+></script>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+></script>
+
+<!-- =========================================================
+     ADVANCED JAVASCRIPT
+========================================================== -->
+
+
+
+  
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+></script>
+
+<!-- =========================================================
+     ADVANCED JAVASCRIPT
+========================================================== -->
+
+<script>
+
+  /* ========================================================
+   CONFIGURATION
+========================================================= */
+
+const SITE_CONFIG = {
+
+    amazonBookUrl: "#",
+
+    kindleBookUrl: "#",
+
+    authorHandle:
+        "@theadarshshukla",
+
+    bookTitle:
+        "इलाहाबाद की संगिनी",
+
+    bookISBN:
+        "9789334496499",
+
+    publicationYear:
+        "2026"
+
+};
+
+
+/* ========================================================
+   NAVBAR SCROLL EFFECT
+========================================================= */
+
+const navbar =
+    document.getElementById("mainNavbar");
+
+
+window.addEventListener(
+    "scroll",
+    function () {
+
+        if (window.scrollY > 60) {
+
+            navbar.classList.add("scrolled");
+
+        } else {
+
+            navbar.classList.remove("scrolled");
+
+        }
+
+    }
+);
+
+
+/* ========================================================
+   SCROLL TO TOP
+========================================================= */
+
+const scrollTop =
+    document.getElementById("scrollTop");
+
+
+window.addEventListener(
+    "scroll",
+    function () {
+
+        if (window.scrollY > 500) {
+
+            scrollTop.classList.add("visible");
+
+        } else {
+
+            scrollTop.classList.remove("visible");
+
+        }
+
+    }
+);
+
+
+scrollTop.addEventListener(
+    "click",
+    function () {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+);
+
+
+/* ========================================================
+   FAQ ACCORDION
+========================================================= */
+
+const faqItems =
+    document.querySelectorAll(".faq-item");
+
+
+faqItems.forEach(
+    function (item) {
+
+        const question =
+            item.querySelector(".faq-question");
+
+
+        question.addEventListener(
+            "click",
+            function () {
+
+                faqItems.forEach(
+                    function (otherItem) {
+
+                        if (otherItem !== item) {
+
+                            otherItem.classList.remove(
+                                "active"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                item.classList.toggle("active");
+
+            }
+        );
+
+    }
+);
+
+
+/* ========================================================
+   REVEAL ON SCROLL
+========================================================= */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+const revealObserver =
+    new IntersectionObserver(
+
+        function (entries) {
+
+            entries.forEach(
+                function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: .12
+        }
+
+    );
+
+
+revealElements.forEach(
+    function (element) {
+
+        revealObserver.observe(element);
+
+    }
+);
+
+
+/* ========================================================
+   AMAZON BUTTON CONFIGURATION
+========================================================= */
+
+const amazonButton =
+    document.getElementById(
+        "amazonBookButton"
+    );
+
+
+const kindleButton =
+    document.getElementById(
+        "kindleButton"
+    );
+
+
+if (amazonButton) {
+
+    amazonButton.href =
+        SITE_CONFIG.amazonBookUrl;
+
+
+    amazonButton.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                SITE_CONFIG.amazonBookUrl === "#"
+            ) {
+
+                event.preventDefault();
+
+                alert(
+                    "Amazon book listing URL को SITE_CONFIG में add करें।"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+if (kindleButton) {
+
+    kindleButton.href =
+        SITE_CONFIG.kindleBookUrl;
+
+
+    kindleButton.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                SITE_CONFIG.kindleBookUrl === "#"
+            ) {
+
+                event.preventDefault();
+
+                alert(
+                    "Kindle/KDP listing URL को SITE_CONFIG में add करें।"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ========================================================
+   CURRENT YEAR
+========================================================= */
+
+const currentYear =
+    document.getElementById("currentYear");
+
+
+if (currentYear) {
+
+    currentYear.textContent =
+        new Date().getFullYear();
+
+}
+
+
+/* ========================================================
+   CLOSE MOBILE NAV AFTER CLICK
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".navbar-nav .nav-link"
+    )
+    .forEach(
+        function (link) {
+
+            link.addEventListener(
+                "click",
+                function () {
+
+                    const menu =
+                        document.getElementById(
+                            "mainMenu"
+                        );
+
+
+                    if (
+                        menu &&
+                        menu.classList.contains("show")
+                    ) {
+
+                        $("#mainMenu").collapse(
+                            "hide"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* ========================================================
+   BOOK TILT EFFECT
+========================================================= */
+
+const bookCard =
+    document.querySelector(
+        ".book-card"
+    );
+
+
+if (bookCard) {
+
+    bookCard.addEventListener(
+        "mousemove",
+        function (event) {
+
+            const rect =
+                bookCard.getBoundingClientRect();
+
+
+            const x =
+                event.clientX -
+                rect.left;
+
+
+            const y =
+                event.clientY -
+                rect.top;
+
+
+            const centerX =
+                rect.width / 2;
+
+
+            const centerY =
+                rect.height / 2;
+
+
+            const rotateY =
+                ((x - centerX) / centerX) * 5;
+
+
+            const rotateX =
+                ((centerY - y) / centerY) * 5;
+
+
+            bookCard.style.transform =
+                "rotateY(" +
+                rotateY +
+                "deg) rotateX(" +
+                rotateX +
+                "deg) translateY(-12px) scale(1.025)";
+
+        }
+    );
+
+
+    bookCard.addEventListener(
+        "mouseleave",
+        function () {
+
+            bookCard.style.transform = "";
+
+        }
+    );
+
+}
+
+
+/* ========================================================
+   HERO BOOK TILT
+========================================================= */
+
+const heroBook =
+    document.querySelector(
+        ".hero-book"
+    );
+
+
+if (heroBook) {
+
+    heroBook.addEventListener(
+        "mousemove",
+        function (event) {
+
+            const rect =
+                heroBook.getBoundingClientRect();
+
+
+            const x =
+                event.clientX -
+                rect.left;
+
+
+            const y =
+                event.clientY -
+                rect.top;
+
+
+            const centerX =
+                rect.width / 2;
+
+
+            const centerY =
+                rect.height / 2;
+
+
+            const rotateY =
+                ((x - centerX) / centerX) * 7;
+
+
+            const rotateX =
+                ((centerY - y) / centerY) * 7;
+
+
+            heroBook.style.transform =
+                "rotateY(" +
+                rotateY +
+                "deg) rotateX(" +
+                rotateX +
+                "deg) translateY(-10px)";
+
+        }
+    );
+
+
+    heroBook.addEventListener(
+        "mouseleave",
+        function () {
+
+            heroBook.style.transform = "";
+
+        }
+    );
+
+}
+
+
+/* ========================================================
+   ACTIVE NAVIGATION
+========================================================= */
+const sections = document.querySelectorAll("header[id], section[id]");
+const navLinks = document.querySelectorAll(".nav-link-custom");
+
+window.addEventListener("scroll", function () {
+    let current = "";
+
+    sections.forEach(function (section) {
+        const sectionTop = section.offsetTop - 160;
+
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(function (link) {
+        link.classList.remove("active-nav");
+
+        const href = link.getAttribute("href");
+
+        if (href === "#" + current) {
+            link.classList.add("active-nav");
+        }
+    });
+});
+
+/* ========================================================
+   CONSOLE BRAND MESSAGE
+========================================================= */
+
+console.log(
+    "%c आदर्श शुक्ला ",
+    "background:#7f1d1d;color:#c9a227;font-size:20px;padding:10px;"
+);
+
+
+console.log(
+    "Official Portfolio loaded successfully."
+);
+
+
+console.log(
+    "Author: " +
+    SITE_CONFIG.authorHandle
+);
+
+
+console.log(
+    "Book: " +
+    SITE_CONFIG.bookTitle
+);
+
+
+console.log(
+    "ISBN: " +
+    SITE_CONFIG.bookISBN
+);
+
+
+console.log(
+    "Publication Year: " +
+    SITE_CONFIG.publicationYear
+);
+
+</script>
+</script>
+
+</body>
+</html>
