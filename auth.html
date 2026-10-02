@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#180507">
+
+<meta name="description"
+      content="❖ इलाहाबाद की संगिनी ❖ — Reader Access">
+
+<link rel="shortcut icon"
+      href="images/KPK_Logo.svg">
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<title>Reader Access | ❖ इलाहाबाद की संगिनी ❖</title>
+
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+
+    color:#fff;
+
+    font-family:
+        "Noto Sans Devanagari",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            #421319 0%,
+            #20070a 42%,
+            #0c0203 100%
+        );
+}
+
+.auth-wrap{
+    width:100%;
+    max-width:430px;
+}
+
+.auth-card{
+    padding:32px;
+
+    border:1px solid rgba(216,167,44,.28);
+    border-radius:22px;
+
+    background:rgba(24,5,7,.94);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.45);
+
+    backdrop-filter:blur(18px);
+}
+
+.logo{
+    width:68px;
+    height:68px;
+
+    margin:0 auto 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:#f1cf70;
+
+    border:1px solid rgba(216,167,44,.35);
+
+    background:rgba(216,167,44,.08);
+
+    box-shadow:
+        0 0 40px rgba(216,167,44,.12);
+}
+
+.logo i{
+    font-size:27px;
+}
+
+.title{
+    text-align:center;
+
+    color:#fff8e8;
+
+    font-size:21px;
+    font-weight:800;
+}
+
+.subtitle{
+    margin-top:6px;
+
+    text-align:center;
+
+    color:#f1cf70;
+
+    font-size:10px;
+
+    letter-spacing:1.5px;
+}
+
+.tabs{
+    display:flex;
+    gap:6px;
+
+    margin:25px 0 20px;
+
+    padding:5px;
+
+    border-radius:11px;
+
+    background:rgba(255,255,255,.045);
+}
+
+.tab{
+    flex:1;
+
+    padding:10px;
+
+    border:0;
+    border-radius:8px;
+
+    color:#c9bfc0;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-family:inherit;
+}
+
+.tab.active{
+    color:#160405;
+
+    font-weight:700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9b7118,
+            #d8a72c
+        );
+}
+
+.form{
+    display:none;
+}
+
+.form.active{
+    display:block;
+}
+
+.field{
+    margin-bottom:14px;
+}
+
+.field label{
+    display:block;
+
+    margin-bottom:6px;
+
+    color:#e9dcca;
+
+    font-size:12px;
+}
+
+.input-wrap{
+    position:relative;
+}
+
+.input-wrap i{
+    position:absolute;
+
+    left:14px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#d8a72c;
+
+    font-size:13px;
+}
+
+.input-wrap input{
+    width:100%;
+    height:46px;
+
+    padding:0 14px 0 40px;
+
+    outline:none;
+
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.045);
+
+    font-family:inherit;
+}
+
+.input-wrap input:focus{
+    border-color:rgba(216,167,44,.55);
+
+    box-shadow:
+        0 0 0 3px rgba(216,167,44,.07);
+}
+
+.submit{
+    width:100%;
+    height:46px;
+
+    margin-top:5px;
+
+    border:1px solid #e7c45f;
+    border-radius:10px;
+
+    color:#160405;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9b7118,
+            #d8a72c
+        );
+
+    font-family:inherit;
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+.submit:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.message{
+    display:none;
+
+    margin-bottom:16px;
+    padding:11px 13px;
+
+    border-radius:9px;
+
+    color:#f8ead0;
+
+    background:rgba(216,167,44,.08);
+
+    border:1px solid rgba(216,167,44,.2);
+
+    font-size:11px;
+    line-height:1.6;
+}
+
+.message.show{
+    display:block;
+}
+
+.message.error{
+    color:#ffdada;
+
+    border-color:rgba(255,100,100,.25);
+
+    background:rgba(255,70,70,.07);
+}
+
+.verify{
+    display:none;
+    text-align:center;
+}
+
+.verify.show{
+    display:block;
+}
+
+.verify-icon{
+    width:60px;
+    height:60px;
+
+    margin:0 auto 15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:#f1cf70;
+
+    border:1px solid rgba(216,167,44,.3);
+
+    background:rgba(216,167,44,.08);
+}
+
+.verify-icon i{
+    font-size:23px;
+}
+
+.verify h2{
+    color:#fff8e8;
+    font-size:18px;
+}
+
+.verify p{
+    margin:9px 0 18px;
+
+    color:#c9bfc0;
+
+    font-size:12px;
+    line-height:1.7;
+}
+
+.verify-email{
+    margin-bottom:18px;
+
+    color:#f1cf70;
+
+    font-weight:700;
+
+    word-break:break-all;
+}
+
+.verify-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.verify-buttons button{
+    flex:1;
+
+    height:42px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+}
+
+.resend{
+    color:#160405;
+
+    border:1px solid #e7c45f;
+
+    background:#d8a72c;
+}
+
+.check{
+    color:#fff8e8;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:rgba(255,255,255,.05);
+}
+
+.footer{
+    margin-top:18px;
+
+    text-align:center;
+
+    color:#75696a;
+
+    font-size:10px;
+}
+
+@media(max-width:480px){
+
+    body{
+        padding:12px;
+    }
+
+    .auth-card{
+        padding:25px 20px;
+    }
+
+    .title{
+        font-size:18px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="auth-wrap">
+
+    <div class="auth-card">
+
+        <div class="logo">
+            <i class="fas fa-book-open"></i>
+        </div>
+
+
+        <div class="title">
+            ❖ इलाहाबाद की संगिनी ❖
+        </div>
+
+
+        <div class="subtitle">
+            DIGITAL FLIPBOOK EDITION
+        </div>
+
+
+        <div id="message"
+             class="message">
+        </div>
+
+
+        <!-- AUTH AREA -->
+
+        <div id="authArea">
+
+            <div class="tabs">
+
+                <button type="button"
+                        id="loginTab"
+                        class="tab active">
+
+                    Login
+
+                </button>
+
+
+                <button type="button"
+                        id="signupTab"
+                        class="tab">
+
+                    Signup
+
+                </button>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <form id="loginForm"
+                  class="form active">
+
+                <div class="field">
+
+                    <label>
+                        Gmail Address
+                    </label>
+
+                    <div class="input-wrap">
+
+                        <i class="fas fa-envelope"></i>
+
+                        <input id="loginEmail"
+                               type="email"
+                               placeholder="yourname@gmail.com"
+                               autocomplete="email"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <div class="input-wrap">
+
+                        <i class="fas fa-lock"></i>
+
+                        <input id="loginPassword"
+                               type="password"
+                               placeholder="••••••••"
+                               autocomplete="current-password"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <button id="loginBtn"
+                        class="submit"
+                        type="submit">
+
+                    <i class="fas fa-sign-in-alt"></i>
+
+                    &nbsp; Login & Read Book
+
+                </button>
+
+            </form>
+
+
+            <!-- SIGNUP -->
+
+            <form id="signupForm"
+                  class="form">
+
+                <div class="field">
+
+                    <label>
+                        Gmail Address
+                    </label>
+
+                    <div class="input-wrap">
+
+                        <i class="fas fa-envelope"></i>
+
+                        <input id="signupEmail"
+                               type="email"
+                               placeholder="yourname@gmail.com"
+                               autocomplete="email"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <div class="input-wrap">
+
+                        <i class="fas fa-lock"></i>
+
+                        <input id="signupPassword"
+                               type="password"
+                               placeholder="Minimum 6 characters"
+                               autocomplete="new-password"
+                               minlength="6"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Confirm Password
+                    </label>
+
+                    <div class="input-wrap">
+
+                        <i class="fas fa-key"></i>
+
+                        <input id="signupConfirm"
+                               type="password"
+                               placeholder="Repeat password"
+                               autocomplete="new-password"
+                               minlength="6"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <button id="signupBtn"
+                        class="submit"
+                        type="submit">
+
+                    <i class="fas fa-user-plus"></i>
+
+                    &nbsp; Create Account
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- VERIFICATION -->
+
+        <div id="verifyArea"
+             class="verify">
+
+            <div class="verify-icon">
+
+                <i class="fas fa-envelope-open-text"></i>
+
+            </div>
+
+
+            <h2>
+                Verify Your Gmail
+            </h2>
+
+
+            <p>
+                Verification link आपके Gmail पर भेजा गया है।
+                Gmail में link खोलकर email verify करें।
+            </p>
+
+
+            <div id="verifyEmail"
+                 class="verify-email">
+            </div>
+
+
+            <div class="verify-buttons">
+
+                <button id="resendBtn"
+                        class="resend"
+                        type="button">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                    Resend
+
+                </button>
+
+
+                <button id="checkBtn"
+                        class="check"
+                        type="button">
+
+                    <i class="fas fa-sync-alt"></i>
+
+                    Check
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+            Secure Reader Access • ❖ इलाहाबाद की संगिनी ❖
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+<script src="js/firebase-config.js"></script>
+
+<script src="js/auth.js"></script>
+
+</body>
+
+</html>

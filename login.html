@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | इलाहाबाद की संगिनी</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Login Karein</h2>
+        <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Registered Gmail" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Account nahi hai? <a href="signup.html">Signup Karein</a></p>
+    </div>
+
+    <script type="module">
+        import { auth } from "./js/firebase-config.js";
+        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Check if email is verified
+                if (user.emailVerified) {
+                    alert("Login Safal Rha!");
+                    window.location.href = "ebook.html"; // Protected Flipbook Reader page
+                } else {
+                    alert("Kripya pehle apne Gmail ko verify karein! Inbox ya Spam folder check karein.");
+                    await auth.signOut();
+                }
+            } catch (error) {
+                alert("Login Failed: " + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

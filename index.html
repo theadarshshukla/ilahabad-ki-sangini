@@ -1,139 +1,25 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adarsh Shukla | Official Portfolio & Literary Works</title>
 
-  <!-- Advanced Schema Markup (JSON-LD) for Google SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Adarsh Shukla",
-    "alternateName": "आदर्श शुक्ला",
-    "url": "https://adarshshukla.com",
-    "jobTitle": ["Software Developer", "Data Analyst", "Hindi Poet", "Author"],
-    "sameAs": [
-      "https://adarshshukla.in",
-      "https://github.com/theadarshshukla",
-      "https://www.wikidata.org/wiki/Q141392257"
-    ]
-  }
-  </script>
+<meta charset="UTF-8">
 
-  <!-- Google Fonts & Styling -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta name="viewport"
+      content="width=device-width,initial-scale=1.0">
 
-    body {
-      background-color: #0d0d0d;
-      color: #ffffff;
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-    }
+<meta name="theme-color"
+      content="#180507">
 
-    /* Full-screen Loader Overlay */
-    #loader-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-color: #0d0d0d;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 99999;
-      transition: opacity 0.5s ease;
-    }
-
-    .loader-container {
-      text-align: center;
-    }
-
-    .brand-logo {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #c5a059;
-      margin-bottom: 10px;
-    }
-
-    .tagline {
-      font-size: 1rem;
-      color: #aaaaaa;
-      margin-bottom: 30px;
-      font-weight: 300;
-    }
-
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid rgba(197, 160, 89, 0.2);
-      border-top: 4px solid #c5a059;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 20px auto;
-    }
-
-    .loading-text {
-      font-size: 0.9rem;
-      color: #888888;
-      letter-spacing: 1px;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
+<title>❖ इलाहाबाद की संगिनी ❖</title>
 </head>
 <body>
+<script>
 
-  <!-- Loading Screen jo shuru me dikhegi -->
-  <div id="loader-wrapper">
-    <div class="loader-container">
-      <div class="brand-logo">आदर्श शुक्ला</div>
-      <div class="tagline">Software Developer & Literary Author</div>
-      <div class="spinner"></div>
-      <div class="loading-text">Loading Portal...</div>
-    </div>
-  </div>
+window.location.replace("auth.html");
 
-  <!-- Yahan aapka asli project load hokar aayega bina URL badle -->
-  <div id="app-container" style="display: none;"></div>
+</script>
 
-  <script>
-    // Jaise hi page khulega, yeh script background se project.html ka content utha kar yahan le aayegi
-    window.addEventListener("DOMContentLoaded", function() {
-      fetch('project.html')
-        .then(response => response.text())
-        .then(html => {
-          // project.html ka content #app-container me daal do
-          document.getElementById('app-container').innerHTML = html;
-          
-          // Thoda delay dekar loading screen ko hata do aur project dikha do
-          setTimeout(function() {
-            const loader = document.getElementById('loader-wrapper');
-            loader.style.opacity = '0';
-            setTimeout(() => {
-              loader.style.display = 'none';
-              document.getElementById('app-container').style.display = 'block';
-            }, 500);
-          }, 1500); // 1.5 seconds loading time
-        })
-        .catch(err => {
-          console.error('Error loading project:', err);
-        });
-    });
-  </script>
+</body> 
 
-</body>
 </html>

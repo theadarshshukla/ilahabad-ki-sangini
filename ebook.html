@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<meta name="theme-color" content="#180507">
+
+<meta name="description"
+      content="❖ इलाहाबाद की संगिनी ❖ — आदर्श शुक्ला द्वारा लिखित डिजिटल पुस्तक Flipbook Edition.">
+
+<meta name="author" content="आदर्श शुक्ला">
+
+<title>❖ इलाहाबाद की संगिनी ❖ | Digital Flipbook</title>
+
+<link rel="shortcut icon"
+      href="images/KPK_Logo.svg">
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="css/flipbook.style.css">
+
+<link rel="stylesheet"
+      href="css/font-awesome.css">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<!-- jQuery -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+<!-- Firebase -->
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+<script src="js/firebase-config.js"></script>
+
+<!-- Flipbook -->
+
+<script src="js/flipbook.min.js"></script>
+
+
+<style>
+
+:root{
+    --wine:#180507;
+    --wine2:#26090d;
+    --wine3:#3b1016;
+    --gold:#d8a72c;
+    --gold2:#f1cf70;
+    --cream:#fff8e8;
+    --white:#fff;
+    --muted:#c9bfc0;
+    --border:rgba(216,167,44,.28);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    overflow:hidden;
+    color:var(--white);
+    font-family:
+        "Noto Sans Devanagari",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #421319 0%,
+            #20070a 40%,
+            #0c0203 100%
+        );
+}
+
+button,
+a{
+    font-family:inherit;
+}
+
+#ebook-content{
+    display:none;
+    width:100%;
+    height:100%;
+}
+
+.ebook-header{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:72px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 24px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(24,5,7,.98),
+            rgba(24,5,7,.88)
+        );
+
+    border-bottom:1px solid var(--border);
+
+    box-shadow:
+        0 8px 35px rgba(0,0,0,.3);
+
+    z-index:999999;
+}
+
+.ebook-brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    min-width:0;
+}
+
+.brand-icon{
+    width:43px;
+    height:43px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:var(--gold2);
+
+    border:1px solid var(--border);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(216,167,44,.2),
+            rgba(216,167,44,.04)
+        );
+}
+
+.brand-icon i{
+    font-size:17px;
+}
+
+.brand-text{
+    min-width:0;
+}
+
+.brand-title{
+    color:var(--cream);
+    font-size:16px;
+    font-weight:700;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.brand-subtitle{
+    color:var(--gold2);
+    font-size:10px;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
+    margin-top:2px;
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.header-btn{
+    height:40px;
+    min-width:40px;
+
+    padding:0 13px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    color:var(--cream);
+
+    background:rgba(255,255,255,.045);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    border-radius:10px;
+
+    cursor:pointer;
+    text-decoration:none;
+
+    transition:.25s ease;
+    font-size:13px;
+}
+
+.header-btn i{
+    color:var(--gold2);
+    font-size:14px;
+}
+
+.header-btn:hover{
+    transform:translateY(-2px);
+    color:#fff;
+    border-color:var(--border);
+    background:rgba(216,167,44,.12);
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.header-btn.primary{
+    background:
+        linear-gradient(
+            135deg,
+            #9b7118,
+            #d8a72c
+        );
+
+    color:#160405;
+    border-color:#e7c45f;
+    font-weight:700;
+}
+
+.header-btn.primary i{
+    color:#160405;
+}
+
+.ebook-main{
+    position:fixed;
+    top:72px;
+    left:0;
+    right:0;
+    bottom:0;
+    overflow:hidden;
+}
+
+.background-glow{
+    position:absolute;
+
+    width:650px;
+    height:650px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(216,167,44,.09),
+            transparent 65%
+        );
+
+    pointer-events:none;
+    z-index:0;
+}
+
+#read{
+    position:relative;
+    width:100%;
+    height:100%;
+    z-index:5;
+}
+
+.book-info{
+    position:fixed;
+
+    left:22px;
+    bottom:22px;
+
+    z-index:9999;
+
+    padding:11px 15px;
+
+    border-radius:12px;
+
+    background:rgba(24,5,7,.82);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid var(--border);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.28);
+
+    pointer-events:none;
+}
+
+.book-info-title{
+    color:var(--cream);
+    font-size:12px;
+    font-weight:700;
+}
+
+.book-info-author{
+    color:var(--gold2);
+    font-size:10px;
+    margin-top:3px;
+}
+
+#ebook-loader{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:18px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #43141a,
+            #170507 65%,
+            #080102
+        );
+
+    z-index:99999999;
+
+    transition:
+        opacity .6s ease,
+        visibility .6s ease;
+}
+
+#ebook-loader.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.loader-book{
+    width:72px;
+    height:72px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:var(--gold2);
+
+    border:1px solid var(--border);
+
+    box-shadow:
+        0 0 45px rgba(216,167,44,.14);
+
+    animation:loaderPulse 1.8s ease-in-out infinite;
+}
+
+.loader-book i{
+    font-size:27px;
+}
+
+.loader-title{
+    color:var(--cream);
+    font-size:18px;
+    font-weight:700;
+}
+
+.loader-subtitle{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.loader-line{
+    width:150px;
+    height:2px;
+    overflow:hidden;
+    border-radius:10px;
+    background:rgba(255,255,255,.08);
+}
+
+.loader-line span{
+    display:block;
+    width:45%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold),
+            transparent
+        );
+
+    animation:loaderMove 1.2s infinite;
+}
+
+@keyframes loaderPulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.08)}
+}
+
+@keyframes loaderMove{
+    from{transform:translateX(-120%)}
+    to{transform:translateX(320%)}
+}
+
+[data-tooltip]{
+    position:relative;
+}
+
+[data-tooltip]::after{
+    content:attr(data-tooltip);
+
+    position:absolute;
+
+    bottom:-39px;
+    left:50%;
+
+    transform:
+        translateX(-50%)
+        translateY(5px);
+
+    padding:6px 9px;
+
+    white-space:nowrap;
+
+    border-radius:6px;
+
+    color:#fff;
+    background:#100304;
+
+    border:1px solid var(--border);
+
+    font-size:10px;
+
+    opacity:0;
+    visibility:hidden;
+
+    pointer-events:none;
+
+    transition:.2s ease;
+}
+
+[data-tooltip]:hover::after{
+    opacity:1;
+    visibility:visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+@media(max-width:700px){
+
+    .ebook-header{
+        height:62px;
+        padding:0 12px;
+    }
+
+    .ebook-main{
+        top:62px;
+    }
+
+    .brand-icon{
+        width:37px;
+        height:37px;
+    }
+
+    .brand-title{
+        font-size:13px;
+    }
+
+    .brand-subtitle{
+        font-size:8px;
+    }
+
+    .header-btn{
+        width:38px;
+        min-width:38px;
+        padding:0;
+    }
+
+    .header-btn span{
+        display:none;
+    }
+
+    .book-info{
+        left:10px;
+        bottom:10px;
+        padding:8px 11px;
+    }
+
+    .book-info-title{
+        font-size:10px;
+    }
+
+    .book-info-author{
+        font-size:9px;
+    }
+}
+
+@media(max-width:420px){
+
+    .brand-text{
+        max-width:155px;
+    }
+
+    .header-actions{
+        gap:4px;
+    }
+
+    .header-btn{
+        width:35px;
+        min-width:35px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div id="ebook-loader">
+
+    <div class="loader-book">
+        <i class="fas fa-book-open"></i>
+    </div>
+
+    <div class="loader-title">
+        ❖ इलाहाबाद की संगिनी ❖
+    </div>
+
+    <div class="loader-subtitle">
+        Digital Flipbook Edition
+    </div>
+
+    <div class="loader-line">
+        <span></span>
+    </div>
+
+</div>
+
+
+<div id="ebook-content">
+
+    <header class="ebook-header">
+
+        <div class="ebook-brand">
+
+            <div class="brand-icon"
+                 data-tooltip="पुस्तक">
+
+                <i class="fas fa-feather-alt"></i>
+
+            </div>
+
+            <div class="brand-text">
+
+                <div class="brand-title">
+                    ❖ इलाहाबाद की संगिनी ❖
+                </div>
+
+                <div class="brand-subtitle">
+                    Digital Book • Adarsh Shukla
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <a href="index.html"
+               class="header-btn"
+               data-tooltip="Home">
+
+                <i class="fas fa-home"></i>
+
+                <span>Home</span>
+
+            </a>
+
+
+            <a href="pdf/pdf.pdf"
+               download="Ilahabad-Ki-Sangini.pdf"
+               class="header-btn"
+               data-tooltip="Download PDF">
+
+                <i class="fas fa-file-download"></i>
+
+                <span>Download</span>
+
+            </a>
+
+
+            <button type="button"
+                    id="customShare"
+                    class="header-btn primary"
+                    data-tooltip="Share Book">
+
+                <i class="fas fa-share-alt"></i>
+
+                <span>Share</span>
+
+            </button>
+
+
+            <button type="button"
+                    id="customFullscreen"
+                    class="header-btn"
+                    data-tooltip="Fullscreen">
+
+                <i class="fas fa-expand"></i>
+
+                <span>Fullscreen</span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="ebook-main">
+
+        <div class="background-glow"></div>
+
+        <div id="read"></div>
+
+        <div class="book-info">
+
+            <div class="book-info-title">
+                ❖ इलाहाबाद की संगिनी ❖
+            </div>
+
+            <div class="book-info-author">
+                आदर्श शुक्ला • Digital Edition
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+let flipbookStarted = false;
+
+
+/* =====================================================
+   INITIALIZE FLIPBOOK
+===================================================== */
+
+function initializeFlipbook(){
+
+    if(flipbookStarted){
+        return;
+    }
+
+    flipbookStarted = true;
+
+
+    $("#read").flipBook({
+
+        pdfUrl:"pdf/pdf.pdf",
+
+        lightBox:false,
+
+        layout:3,
+
+        icons:"fontawesome",
+
+        useFontAwesome5:true,
+
+        skin:"dark",
+
+        skinColor:"#d8a72c",
+
+        skinBackground:"#180507",
+
+        backgroundColor:"#140406",
+
+
+        currentPage:{
+            enabled:true,
+            vAlign:"bottom",
+            hAlign:"left",
+            title:"Current Page"
+        },
+
+
+        btnColor:"#f1cf70",
+
+        btnColorHover:"#ffffff",
+
+        btnBackground:
+            "rgba(24,5,7,.72)",
+
+        btnBackgroundHover:
+            "rgba(216,167,44,.18)",
+
+        btnRadius:8,
+
+        btnMargin:3,
+
+        btnSize:17,
+
+        btnPaddingV:9,
+
+        btnPaddingH:11,
+
+
+        sideNavigationButtons:true,
+
+        sideBtnColor:"#f1cf70",
+
+        sideBtnColorHover:"#ffffff",
+
+        sideBtnBackground:
+            "rgba(24,5,7,.72)",
+
+        sideBtnBackgroundHover:
+            "rgba(216,167,44,.22)",
+
+        sideBtnSize:48,
+
+        sideBtnRadius:50,
+
+
+        btnAutoplay:{
+            enabled:true,
+            title:"Auto Flip",
+            icon:"fa-play",
+            iconAlt:"fa-pause",
+            vAlign:"top",
+            hAlign:"left"
+        },
+
+
+        btnZoomIn:{
+            enabled:true,
+            title:"Zoom In",
+            icon:"fa-search-plus"
+        },
+
+
+        btnZoomOut:{
+            enabled:true,
+            title:"Zoom Out",
+            icon:"fa-search-minus"
+        },
+
+
+        btnToc:{
+            enabled:true,
+            title:"Table of Contents",
+            icon:"fa-list-ol"
+        },
+
+
+        btnThumbs:{
+            enabled:true,
+            title:"Pages",
+            icon:"fa-th-large"
+        },
+
+
+        btnShare:{
+            enabled:true,
+            title:"Share",
+            icon:"fa-share-alt",
+            hideOnMobile:false
+        },
+
+
+        btnPrint:{
+            enabled:true,
+            title:"Print",
+            icon:"fa-print",
+            hideOnMobile:false
+        },
+
+
+        btnDownloadPages:{
+            enabled:true,
+            title:"Download Pages",
+            icon:"fa-download",
+            icon2:"file_download",
+            url:"pdf/pdf.pdf",
+            name:"Ilahabad-Ki-Sangini.pdf",
+            hideOnMobile:false
+        },
+
+
+        btnDownloadPdf:{
+            enabled:true,
+            title:"Download PDF",
+            icon:"fa-file-pdf",
+            icon2:"picture_as_pdf",
+            url:"pdf/pdf.pdf",
+            name:"Ilahabad-Ki-Sangini.pdf",
+            forceDownload:false,
+            openInNewWindow:true
+        },
+
+
+        btnSound:{
+            enabled:true,
+            title:"Page Sound",
+            icon:"fa-volume-up",
+            iconAlt:"fa-volume-off",
+            hideOnMobile:true
+        },
+
+
+        btnExpand:{
+            enabled:true,
+            title:"Fullscreen",
+            icon:"fa-expand",
+            iconAlt:"fa-compress"
+        },
+
+
+        btnSingle:{
+            enabled:true,
+            title:"Single Page",
+            icon:"fa-file"
+        },
+
+
+        btnClose:{
+            enabled:true,
+            title:"Close",
+            icon:"fa-times"
+        },
+
+
+        menuTransparent:false,
+
+        menuBackground:
+            "rgba(24,5,7,.94)",
+
+        menuShadow:
+            "0 -8px 30px rgba(0,0,0,.25)",
+
+        menuPadding:4,
+
+
+        menu2Transparent:false,
+
+        menu2Background:
+            "rgba(24,5,7,.94)",
+
+        menu2Shadow:
+            "0 8px 30px rgba(0,0,0,.25)",
+
+        menu2Padding:4,
+
+
+        shareUrl:
+            window.location.href,
+
+        shareTitle:
+            "❖ इलाहाबाद की संगिनी ❖",
+
+        shareImage:
+            "images/book2/FrontCover.png",
+
+
+        facebook:{
+            enabled:true,
+            url:window.location.href,
+            title:"❖ इलाहाबाद की संगिनी ❖",
+            description:
+                "आदर्श शुक्ला द्वारा लिखित पुस्तक — Digital Flipbook Edition."
+        },
+
+
+        twitter:{
+            enabled:true,
+            url:window.location.href,
+            description:
+                "❖ इलाहाबाद की संगिनी ❖ — आदर्श शुक्ला"
+        },
+
+
+        email:{
+            enabled:true,
+            url:window.location.href,
+            title:"❖ इलाहाबाद की संगिनी ❖",
+            description:
+                "आदर्श शुक्ला द्वारा लिखित पुस्तक — Digital Flipbook Edition."
+        },
+
+
+        pinterest:{
+            enabled:false,
+            url:window.location.href,
+            image:
+                "images/book2/FrontCover.png",
+            description:
+                "❖ इलाहाबाद की संगिनी ❖"
+        },
+
+
+        mobile:{
+            zoomRatio:1.2,
+            singlePageMode:true
+        },
+
+
+        pageMode:"double",
+
+        responsive:true,
+
+        responsiveRatio:1,
+
+
+        onReady:function(){
+
+            setTimeout(function(){
+
+                $("#ebook-loader")
+                    .addClass("hide");
+
+            },700);
+
+        }
+
+    });
+
+
+    /* FALLBACK LOADER */
+
+    setTimeout(function(){
+
+        $("#ebook-loader")
+            .addClass("hide");
+
+    },3500);
+
+
+    /* SHARE */
+
+    $("#customShare")
+        .off("click")
+        .on("click",function(){
+
+            const shareData={
+
+                title:
+                    "❖ इलाहाबाद की संगिनी ❖",
+
+                text:
+                    "आदर्श शुक्ला द्वारा लिखित पुस्तक — डिजिटल Flipbook Edition.",
+
+                url:
+                    window.location.href
+            };
+
+
+            if(
+                navigator.share &&
+                window.isSecureContext
+            ){
+
+                navigator
+                    .share(shareData)
+                    .catch(function(){});
+
+            }else{
+
+                const temp =
+                    document.createElement("input");
+
+                temp.value =
+                    window.location.href;
+
+                document.body.appendChild(temp);
+
+                temp.select();
+
+                document.execCommand("copy");
+
+                document.body.removeChild(temp);
+
+                alert(
+                    "पुस्तक का लिंक कॉपी हो गया है।"
+                );
+
+            }
+
+        });
+
+
+    /* FULLSCREEN */
+
+    $("#customFullscreen")
+        .off("click")
+        .on("click",function(){
+
+            const page =
+                document.documentElement;
+
+
+            if(!document.fullscreenElement){
+
+                if(page.requestFullscreen){
+
+                    page.requestFullscreen();
+
+                }else if(
+                    page.webkitRequestFullscreen
+                ){
+
+                    page.webkitRequestFullscreen();
+
+                }
+
+            }else{
+
+                if(document.exitFullscreen){
+
+                    document.exitFullscreen();
+
+                }
+
+            }
+
+        });
+
+
+    /* FULLSCREEN ICON */
+
+    document.addEventListener(
+        "fullscreenchange",
+        function(){
+
+            const icon =
+                $("#customFullscreen i");
+
+
+            if(document.fullscreenElement){
+
+                icon
+                    .removeClass("fa-expand")
+                    .addClass("fa-compress");
+
+            }else{
+
+                icon
+                    .removeClass("fa-compress")
+                    .addClass("fa-expand");
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   STRICT FIREBASE AUTH GATE
+===================================================== */
+
+firebase.auth().onAuthStateChanged(
+    async function(user){
+
+        console.log(
+            "Firebase user:",
+            user ? user.email : "NOT LOGGED IN"
+        );
+
+
+        /* ---------------------------------------------
+           1. LOGIN नहीं है
+        --------------------------------------------- */
+
+        if(!user){
+
+            window.location.replace(
+                "auth.html"
+            );
+
+            return;
+        }
+
+
+        try{
+
+            /* -----------------------------------------
+               2. Firebase user information refresh
+            ----------------------------------------- */
+
+            await user.reload();
+
+
+            const freshUser =
+                firebase.auth().currentUser;
+
+
+            /* -----------------------------------------
+               3. USER EXIST नहीं
+            ----------------------------------------- */
+
+            if(!freshUser){
+
+                window.location.replace(
+                    "auth.html"
+                );
+
+                return;
+            }
+
+
+            /* -----------------------------------------
+               4. EMAIL VERIFIED नहीं है
+            ----------------------------------------- */
+
+            if(freshUser.emailVerified !== true){
+
+                await firebase
+                    .auth()
+                    .signOut();
+
+
+                window.location.replace(
+                    "auth.html?verify=1"
+                );
+
+                return;
+            }
+
+
+            /* -----------------------------------------
+               5. ONLY VERIFIED USER
+                  CAN REACH HERE
+            ----------------------------------------- */
+
+            document
+                .getElementById("ebook-content")
+                .style.display = "block";
+
+
+            /* -----------------------------------------
+               6. START FLIPBOOK
+            ----------------------------------------- */
+
+            initializeFlipbook();
+
+
+        }catch(error){
+
+            console.error(
+                "Auth verification error:",
+                error
+            );
+
+
+            await firebase
+                .auth()
+                .signOut();
+
+
+            window.location.replace(
+                "auth.html"
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
