@@ -1,0 +1,826 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#18090b">
+  <meta name="description" content="Secure reader access for इलाहाबाद की संगिनी by आदर्श शुक्ला.">
+
+  <title>Reader Access | इलाहाबाद की संगिनी</title>
+
+  <link rel="icon" href="images/KPK_Logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #100709;
+      --panel: #1b1012;
+      --panel-soft: #211517;
+      --gold: #d8b36a;
+      --gold-light: #f0d59c;
+      --text: #f8f3ec;
+      --muted: #aa9b9d;
+      --border: rgba(230, 198, 143, .16);
+      --danger: #ff9d9d;
+      --success: #a9e1bd;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      font-family: "DM Sans", "Noto Sans Devanagari", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 50% 0%, #35181b 0%, transparent 48%),
+        linear-gradient(145deg, #100709, #160a0c 55%, #0b0607);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .topbar {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 5.5%;
+      border-bottom: 1px solid rgba(255,255,255,.055);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(216,179,106,.4);
+      border-radius: 9px;
+      color: var(--gold-light);
+      font-size: 13px;
+      background: rgba(216,179,106,.06);
+    }
+
+    .brand-name {
+      font-family: "Noto Sans Devanagari", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .05px;
+    }
+
+    .brand-caption {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .secure-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .secure-label i {
+      color: var(--gold);
+      font-size: 10px;
+    }
+
+    .main {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      padding: 12px 18px;
+      overflow: hidden;
+    }
+
+    .auth-card {
+      width: min(100%, 390px);
+      max-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #59423a transparent;
+      padding: 27px 30px 23px;
+      background: linear-gradient(155deg, rgba(37,24,26,.98), rgba(24,14,16,.98));
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      box-shadow: 0 22px 65px rgba(0,0,0,.28);
+      animation: cardIn .4s ease both;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(7px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .book-mark {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 17px;
+      color: var(--gold-light);
+      background: rgba(216,179,106,.08);
+      border: 1px solid rgba(216,179,106,.23);
+      border-radius: 12px;
+      font-size: 17px;
+    }
+
+    .eyebrow {
+      margin-bottom: 7px;
+      color: var(--gold);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: "Playfair Display", "Noto Sans Devanagari", serif;
+      font-size: clamp(22px, 3vw, 27px);
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -.35px;
+    }
+
+    .description {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 11.5px;
+      line-height: 1.7;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      padding: 4px;
+      margin: 21px 0 19px;
+      background: #120b0d;
+      border: 1px solid rgba(255,255,255,.045);
+      border-radius: 9px;
+    }
+
+    .tab {
+      height: 34px;
+      color: var(--muted);
+      background: transparent;
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11.5px;
+      font-weight: 600;
+      transition: background .2s, color .2s;
+    }
+
+    .tab.active {
+      color: var(--gold-light);
+      background: #302023;
+      box-shadow: inset 0 0 0 1px rgba(216,179,106,.13);
+    }
+
+    .form-view {
+      display: none;
+    }
+
+    .form-view.active {
+      display: block;
+      animation: viewIn .2s ease both;
+    }
+
+    @keyframes viewIn {
+      from { opacity: 0; transform: translateY(3px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .field {
+      margin-bottom: 13px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      color: #e8dddc;
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap > i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9e898b;
+      font-size: 12px;
+      pointer-events: none;
+    }
+
+    .field input {
+      display: block;
+      width: 100%;
+      height: 40px;
+      padding: 0 39px 0 35px;
+      color: var(--text);
+      background: #130d0f;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 7px;
+      outline: none;
+      font-size: 11.5px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .field input::placeholder {
+      color: #77696b;
+    }
+
+    .field input:focus {
+      border-color: rgba(216,179,106,.68);
+      box-shadow: 0 0 0 3px rgba(216,179,106,.07);
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 5px;
+      top: 4px;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      color: #a99698;
+      background: transparent;
+      border: 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .toggle-password:hover {
+      color: var(--gold-light);
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: flex-end;
+      margin: -2px 0 16px;
+    }
+
+    .text-button {
+      color: var(--gold-light);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font-size: 10.5px;
+      text-decoration: none;
+    }
+
+    .text-button:hover {
+      text-decoration: underline;
+    }
+
+    .primary-btn {
+      width: 100%;
+      min-height: 41px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 9px 14px;
+      color: #21150a;
+      background: linear-gradient(115deg, #c49a4c, #ecd29b);
+      border: 1px solid #e9ce92;
+      border-radius: 7px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: filter .2s, transform .2s;
+    }
+
+    .primary-btn:hover:not(:disabled) {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    .primary-btn:disabled,
+    .secondary-btn:disabled {
+      opacity: .6;
+      cursor: wait;
+      transform: none;
+    }
+
+    .secondary-btn {
+      width: 100%;
+      min-height: 38px;
+      margin-top: 9px;
+      padding: 8px 12px;
+      color: #eadbdc;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .secondary-btn:hover:not(:disabled) {
+      border-color: rgba(216,179,106,.35);
+      background: rgba(216,179,106,.05);
+    }
+
+    .form-note {
+      margin-top: 13px;
+      color: #9d8e90;
+      font-size: 10px;
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    .form-note i {
+      margin-right: 4px;
+      color: var(--gold);
+    }
+
+    .divider {
+      height: 1px;
+      margin: 19px 0 12px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .card-footer {
+      color: #98878a;
+      font-size: 9.5px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .card-footer strong {
+      color: #d8c4c4;
+      font-weight: 500;
+    }
+
+    .bottom-note {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      color: #827477;
+      font-size: 9px;
+      text-align: center;
+    }
+
+    /* Verification state */
+
+    .verify-icon {
+      width: 47px;
+      height: 47px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      color: var(--gold-light);
+      background: rgba(216,179,106,.08);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      font-size: 19px;
+    }
+
+    .verify-email {
+      overflow-wrap: anywhere;
+      margin: 15px 0;
+      padding: 10px 12px;
+      color: var(--gold-light);
+      background: rgba(216,179,106,.055);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    /* Compact, accessible popup */
+
+    .popup-backdrop[hidden] {
+      display: none !important;
+    }
+
+    .popup-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      background: rgba(4,2,3,.76);
+      backdrop-filter: blur(5px);
+    }
+
+    .popup {
+      width: min(100%, 330px);
+      padding: 23px 21px 19px;
+      background: #201517;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.4);
+      animation: viewIn .2s ease both;
+    }
+
+    .popup-icon {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+      color: var(--gold-light);
+      background: rgba(216,179,106,.09);
+      border-radius: 9px;
+      font-size: 15px;
+    }
+
+    .popup.error .popup-icon { color: var(--danger); }
+    .popup.success .popup-icon { color: var(--success); }
+
+    .popup h2 {
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .popup p {
+      margin-top: 7px;
+      color: #c0b1b2;
+      font-size: 11.5px;
+      line-height: 1.75;
+      overflow-wrap: anywhere;
+    }
+
+    .popup-close {
+      width: 100%;
+      height: 36px;
+      margin-top: 18px;
+      color: #25180c;
+      background: var(--gold-light);
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    @media (min-width: 900px) {
+      .auth-card { width: 390px; }
+    }
+
+    @media (max-width: 520px) {
+      .topbar {
+        min-height: 52px;
+        padding: 0 15px;
+      }
+
+      .brand-mark {
+        width: 29px;
+        height: 29px;
+        flex-basis: 29px;
+      }
+
+      .brand-name { font-size: 11px; }
+      .brand-caption { font-size: 8px; letter-spacing: 1px; }
+      .secure-label { font-size: 9px; }
+
+      .main {
+        padding: 10px 13px;
+      }
+
+      .auth-card {
+        width: min(100%, 390px);
+        padding: 22px 21px 19px;
+        border-radius: 12px;
+      }
+
+      .book-mark {
+        width: 38px;
+        height: 38px;
+        margin-bottom: 13px;
+      }
+
+      h1 { font-size: 23px; }
+      .tabs { margin: 17px 0 16px; }
+      .field { margin-bottom: 11px; }
+      .bottom-note { font-size: 8px; }
+    }
+
+    @media (max-height: 650px) {
+      .topbar { min-height: 46px; }
+      .auth-card { padding-top: 17px; padding-bottom: 15px; }
+      .book-mark { width: 32px; height: 32px; margin-bottom: 10px; }
+      .tabs { margin: 12px 0; }
+      .field { margin-bottom: 9px; }
+      .field input { height: 37px; }
+      .form-note { margin-top: 9px; }
+      .divider { margin: 12px 0 9px; }
+      .secondary-btn { min-height: 34px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Home">
+        <span class="brand-mark">
+          <i class="fas fa-feather-alt" aria-hidden="true"></i>
+        </span>
+        <span>
+          <span class="brand-name">इलाहाबाद की संगिनी</span>
+          <span class="brand-caption">A digital reading experience</span>
+        </span>
+      </a>
+
+      <span class="secure-label">
+        <i class="fas fa-lock" aria-hidden="true"></i>
+        Secure access
+      </span>
+    </header>
+
+    <main class="main">
+      <section class="auth-card" aria-label="Reader authentication">
+
+        <div class="book-mark" aria-hidden="true">
+          <i class="fas fa-book-open"></i>
+        </div>
+
+        <section id="authArea" class="form-view active">
+          <div class="eyebrow">PRIVATE READER ACCESS</div>
+          <h1>Welcome, reader.</h1>
+          <p class="description">
+            Sign in to continue your reading journey.
+            New here? Create an account to get started.
+          </p>
+
+          <div class="tabs" role="tablist" aria-label="Account access">
+            <button type="button" id="loginTab" class="tab active"
+              role="tab" aria-selected="true" aria-controls="loginForm">
+              Sign in
+            </button>
+            <button type="button" id="signupTab" class="tab"
+              role="tab" aria-selected="false" aria-controls="signupForm">
+              Create account
+            </button>
+          </div>
+
+          <form id="loginForm" class="form-view active">
+            <div class="field">
+              <label for="loginEmail">Gmail address</label>
+              <div class="input-wrap">
+                <i class="far fa-envelope" aria-hidden="true"></i>
+                <input id="loginEmail" type="email" name="email"
+                  placeholder="you@gmail.com" autocomplete="username"
+                  maxlength="254" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="loginPassword">Password</label>
+              <div class="input-wrap">
+                <i class="fas fa-key" aria-hidden="true"></i>
+                <input id="loginPassword" type="password" name="password"
+                  placeholder="Enter your password"
+                  autocomplete="current-password" required>
+                <button type="button" class="toggle-password"
+                  data-target="loginPassword" aria-label="Show password">
+                  <i class="far fa-eye" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-options">
+              <button type="button" class="text-button" id="forgotBtn">
+                Forgot password?
+              </button>
+            </div>
+
+            <button class="primary-btn" id="loginBtn" type="submit">
+              Sign in <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </button>
+
+            <p class="form-note">
+              <i class="fas fa-shield-alt" aria-hidden="true"></i>
+              Email verification is required for book access.
+            </p>
+          </form>
+
+          <form id="signupForm" class="form-view">
+            <div class="field">
+              <label for="signupName">Full name</label>
+              <div class="input-wrap">
+                <i class="far fa-user" aria-hidden="true"></i>
+                <input id="signupName" name="name" type="text"
+                  placeholder="Your full name" autocomplete="name"
+                  minlength="2" maxlength="80" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="signupEmail">Gmail address</label>
+              <div class="input-wrap">
+                <i class="far fa-envelope" aria-hidden="true"></i>
+                <input id="signupEmail" name="email" type="email"
+                  placeholder="you@gmail.com" autocomplete="email"
+                  maxlength="254" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="signupPassword">Create password</label>
+              <div class="input-wrap">
+                <i class="fas fa-key" aria-hidden="true"></i>
+                <input id="signupPassword" name="password" type="password"
+                  placeholder="At least 6 characters"
+                  autocomplete="new-password" minlength="6" required>
+                <button type="button" class="toggle-password"
+                  data-target="signupPassword" aria-label="Show password">
+                  <i class="far fa-eye" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="signupConfirm">Confirm password</label>
+              <div class="input-wrap">
+                <i class="fas fa-lock" aria-hidden="true"></i>
+                <input id="signupConfirm" name="confirmPassword"
+                  type="password" placeholder="Re-enter password"
+                  autocomplete="new-password" minlength="6" required>
+                <button type="button" class="toggle-password"
+                  data-target="signupConfirm" aria-label="Show password">
+                  <i class="far fa-eye" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+            <button class="primary-btn" id="signupBtn" type="submit">
+              Create account
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </button>
+
+            <p class="form-note">
+              A verification link will be sent to your email.
+            </p>
+          </form>
+        </section>
+
+        <section id="forgotArea" class="form-view">
+          <div class="eyebrow">ACCOUNT RECOVERY</div>
+          <h1>Reset password.</h1>
+          <p class="description">
+            Enter your registered Gmail address to request password-reset instructions.
+          </p>
+
+          <form id="forgotForm" style="margin-top:20px">
+            <div class="field">
+              <label for="forgotEmail">Gmail address</label>
+              <div class="input-wrap">
+                <i class="far fa-envelope" aria-hidden="true"></i>
+                <input id="forgotEmail" type="email" name="email"
+                  placeholder="you@gmail.com" autocomplete="email"
+                  maxlength="254" required>
+              </div>
+            </div>
+
+            <button class="primary-btn" id="resetBtn" type="submit">
+              Send reset instructions
+            </button>
+            <button class="secondary-btn" id="backFromForgotBtn" type="button">
+              <i class="fas fa-arrow-left" aria-hidden="true"></i>
+              Back to sign in
+            </button>
+          </form>
+        </section>
+
+        <section id="verifyArea" class="form-view">
+          <div class="verify-icon" aria-hidden="true">
+            <i class="far fa-envelope"></i>
+          </div>
+          <div class="eyebrow">ONE LAST STEP</div>
+          <h1>Verify your email.</h1>
+          <p class="description">
+            Open the verification link in your inbox. Once verified, return here to unlock your book.
+          </p>
+
+          <div id="verifyEmail" class="verify-email"></div>
+
+          <button class="primary-btn" id="checkBtn" type="button">
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            Check verification
+          </button>
+
+          <button class="secondary-btn" id="resendBtn" type="button">
+            <i class="far fa-paper-plane" aria-hidden="true"></i>
+            Resend verification email
+          </button>
+
+          <button class="secondary-btn" id="backBtn" type="button">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+            Back to sign in
+          </button>
+
+          <p class="form-note">
+            Check your spam folder if the email is missing.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+        <footer class="card-footer">
+          <strong>इलाहाबाद की संगिनी</strong><br>
+          A book by आदर्श शुक्ला
+        </footer>
+      </section>
+    </main>
+
+    <footer class="bottom-note">
+      © <span id="year"></span> Adarsh Shukla · Reader access
+    </footer>
+  </div>
+
+  <div id="popupBackdrop" class="popup-backdrop" hidden>
+    <section id="popupBox" class="popup" role="dialog"
+      aria-modal="true" aria-labelledby="popupTitle"
+      aria-describedby="popupText">
+      <div id="popupIcon" class="popup-icon" aria-hidden="true">
+        <i class="fas fa-info-circle"></i>
+      </div>
+      <h2 id="popupTitle">Notice</h2>
+      <p id="popupText"></p>
+      <button type="button" id="popupClose" class="popup-close">
+        Got it
+      </button>
+    </section>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

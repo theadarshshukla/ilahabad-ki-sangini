@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup | इलाहाबाद की संगिनी</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Naya Khata Banayein</h2>
+        <form id="signupForm">
+            <input type="email" id="signupEmail" placeholder="Apna Real Gmail Dalein" required>
+            <input type="password" id="signupPassword" placeholder="Password (min 6 characters)" required>
+            <button type="submit">Register & Verify Email</button>
+        </form>
+        <p>Pehle se account hai? <a href="login.html">Login Karein</a></p>
+    </div>
+
+    <script type="module">
+        import { auth } from "./js/firebase-config.js";
+        import { createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        document.getElementById("signupForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("signupEmail").value;
+            const password = document.getElementById("signupPassword").value;
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                
+                // Send Verification Email
+                await sendEmailVerification(user);
+                alert("Verification email bhej di gayi hai! Kripya apna Gmail check karein aur link par click karke verify karein.");
+                window.location.href = "login.html";
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

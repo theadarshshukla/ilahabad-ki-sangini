@@ -1,0 +1,1094 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#180507">
+  <meta name="description" content="इलाहाबाद की संगिनी — आदर्श शुक्ला द्वारा लिखित डिजिटल पुस्तक।">
+  <meta name="author" content="आदर्श शुक्ला">
+
+  <title>इलाहाबाद की संगिनी | Digital Edition</title>
+
+  <link rel="icon" href="images/KPK_Logo.svg">
+
+  <!-- Hindi typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Existing project styles -->
+  <link rel="stylesheet" href="css/flipbook.style.css">
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Required libraries: maintain this loading order -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/flipbook.min.js"></script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #100305;
+      --wine: #1b070a;
+      --wine-light: #2c0c12;
+      --gold: #d8b15a;
+      --gold-light: #f1d68e;
+      --text: #fff9ef;
+      --muted: #b9a8a8;
+      --border: rgba(216, 177, 90, .20);
+      --header-height: 54px;
+      --font-ui: "Noto Sans Devanagari", "Segoe UI", sans-serif;
+      --font-book: "Noto Serif Devanagari", serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      margin: 0;
+    }
+
+    html {
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    body {
+      overflow: hidden;
+      overscroll-behavior: none;
+      -webkit-text-size-adjust: 100%;
+      background:
+        radial-gradient(ellipse at 50% 42%, #351018 0%, #1c070b 44%, #100305 100%);
+      color: var(--text);
+      font-family: var(--font-ui);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, a {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible, a:focus-visible {
+      outline: 2px solid var(--gold-light);
+      outline-offset: 3px;
+    }
+
+    /* Main application */
+
+    #ebook-content {
+      display: none;
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    /* Compact, premium navigation */
+
+    .ebook-header {
+      position: absolute;
+      z-index: 1000;
+      inset: 0 0 auto;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 20px;
+
+      background: rgba(20, 4, 7, .94);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 5px 22px rgba(0, 0, 0, .16);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .ebook-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      flex: 0 0 31px;
+      width: 31px;
+      height: 31px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--gold-light);
+      background: linear-gradient(145deg, #35151a, #1a080b);
+    }
+
+    .brand-mark i {
+      font-size: 12px;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-title {
+      overflow: hidden;
+      color: var(--text);
+      font-family: var(--font-book);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.45;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      margin-top: 1px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: .25px;
+      line-height: 1.4;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .header-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-width: 31px;
+      height: 31px;
+      padding: 0 9px;
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: 7px;
+      background: rgba(255, 255, 255, .035);
+      color: #e9dede;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .2s ease, border-color .2s ease, color .2s ease;
+    }
+
+    .header-btn i {
+      color: var(--gold);
+      font-size: 11px;
+      line-height: 1;
+    }
+
+    .header-btn:hover:not(:disabled) {
+      background: rgba(216, 177, 90, .10);
+      border-color: var(--border);
+      color: #fff;
+    }
+
+    .header-btn:disabled {
+      opacity: .42;
+      cursor: not-allowed;
+    }
+
+    .header-btn.restricted i {
+      color: #b4a3a3;
+    }
+
+    .header-btn .lock-icon {
+      font-size: 8px;
+      color: #a99a9a;
+    }
+
+    .header-btn.fullscreen-btn {
+      border-color: rgba(216, 177, 90, .25);
+      color: var(--gold-light);
+    }
+
+    /* Reading stage */
+
+    .ebook-main {
+      position: absolute;
+      inset: var(--header-height) 0 0;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(ellipse at 50% 43%,
+          rgba(110, 49, 47, .16) 0%,
+          rgba(35, 9, 13, .10) 48%,
+          transparent 76%);
+    }
+
+    .stage-decoration {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg,
+          rgba(0, 0, 0, .10),
+          transparent 20%,
+          transparent 80%,
+          rgba(0, 0, 0, .10));
+    }
+
+    #read {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    /* Keep flipbook inside the viewport */
+
+    #read > *,
+    #read .flipbook-container,
+    #read .fb3d-container {
+      max-width: 100%;
+    }
+
+    /* Small plugin controls. Actual class names depend on the
+       installed flipbook build; the options below also set sizes. */
+
+    #read button,
+    #read .flipbook-menu button,
+    #read .fb3d-menu button {
+      font-family: var(--font-ui);
+    }
+
+    #read i {
+      line-height: 1;
+    }
+
+    /* Loading screen */
+
+    #ebook-loader {
+      position: fixed;
+      z-index: 5000;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 13px;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse at center, #321016 0%, #190609 55%, #100305 100%);
+      transition: opacity .35s ease, visibility .35s ease;
+    }
+
+    #ebook-loader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-mark {
+      display: grid;
+      place-items: center;
+      width: 47px;
+      height: 47px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(216, 177, 90, .06);
+      color: var(--gold-light);
+      box-shadow: 0 0 35px rgba(216, 177, 90, .07);
+    }
+
+    .loader-mark i {
+      font-size: 18px;
+    }
+
+    .loader-title {
+      font-family: var(--font-book);
+      font-size: 17px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .loader-subtitle {
+      color: var(--muted);
+      font-size: 10px;
+      text-align: center;
+    }
+
+    .loader-track {
+      width: 116px;
+      height: 2px;
+      margin-top: 5px;
+      overflow: hidden;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, .09);
+    }
+
+    .loader-track span {
+      display: block;
+      width: 40%;
+      height: 100%;
+      background: var(--gold);
+      animation: loadingMove 1.2s ease-in-out infinite;
+    }
+
+    @keyframes loadingMove {
+      from { transform: translateX(-110%); }
+      to { transform: translateX(290%); }
+    }
+
+    /* Accessible custom notifications */
+
+    .notice-backdrop[hidden] {
+      display: none !important;
+    }
+
+    .notice-backdrop {
+      position: fixed;
+      z-index: 10000;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(8, 2, 3, .66);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .notice-box {
+      width: min(100%, 340px);
+      padding: 22px 22px 18px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: linear-gradient(145deg, #2b0d12, #190609);
+      box-shadow: 0 20px 65px rgba(0, 0, 0, .42);
+      text-align: center;
+      animation: noticeIn .18s ease-out;
+    }
+
+    @keyframes noticeIn {
+      from { opacity: 0; transform: translateY(5px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .notice-icon {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 12px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--gold-light);
+      background: rgba(216, 177, 90, .08);
+    }
+
+    .notice-icon i {
+      font-size: 14px;
+    }
+
+    .notice-box.error .notice-icon {
+      color: #ffaaa5;
+      border-color: rgba(255, 120, 120, .25);
+    }
+
+    .notice-box.success .notice-icon {
+      color: #b9e6c3;
+      border-color: rgba(140, 220, 160, .25);
+    }
+
+    .notice-title {
+      margin: 0;
+      color: var(--text);
+      font-family: var(--font-book);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .notice-message {
+      margin: 8px 0 18px;
+      color: #d1c0c0;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+    }
+
+    .notice-close {
+      min-width: 94px;
+      height: 32px;
+      padding: 0 17px;
+      border: 1px solid rgba(216, 177, 90, .42);
+      border-radius: 7px;
+      background: linear-gradient(135deg, #d8b15a, #b88a35);
+      color: #211006;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .notice-close:hover {
+      filter: brightness(1.07);
+    }
+
+    /* Mobile */
+
+    @media (max-width: 640px) {
+      :root {
+        --header-height: 48px;
+      }
+
+      .ebook-header {
+        gap: 6px;
+        padding: 0 9px;
+      }
+
+      .ebook-brand {
+        gap: 7px;
+      }
+
+      .brand-mark {
+        flex-basis: 28px;
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+      }
+
+      .brand-mark i {
+        font-size: 11px;
+      }
+
+      .brand-title {
+        max-width: 42vw;
+        font-size: 11px;
+      }
+
+      .brand-subtitle {
+        font-size: 8px;
+      }
+
+      .header-actions {
+        gap: 4px;
+      }
+
+      .header-btn {
+        width: 29px;
+        min-width: 29px;
+        height: 29px;
+        padding: 0;
+        border-radius: 7px;
+      }
+
+      .header-btn > span,
+      .header-btn .lock-icon {
+        display: none;
+      }
+
+      .header-btn i {
+        font-size: 10px;
+      }
+
+      .ebook-main {
+        background:
+          radial-gradient(ellipse at 50% 40%, rgba(110, 49, 47, .12), transparent 72%);
+      }
+
+      .loader-title {
+        font-size: 15px;
+      }
+
+      .notice-box {
+        width: min(100%, 315px);
+        padding: 19px 17px 16px;
+      }
+
+      .notice-title {
+        font-size: 15px;
+      }
+
+      .notice-message {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .ebook-header {
+        padding: 0 6px;
+        gap: 4px;
+      }
+
+      .brand-title {
+        max-width: 36vw;
+        font-size: 10px;
+      }
+
+      .brand-subtitle {
+        font-size: 7px;
+      }
+
+      .header-actions {
+        gap: 3px;
+      }
+
+      .header-btn {
+        width: 27px;
+        min-width: 27px;
+        height: 27px;
+      }
+    }
+
+    @media (max-height: 420px) and (orientation: landscape) {
+      :root {
+        --header-height: 42px;
+      }
+
+      .brand-mark {
+        width: 25px;
+        height: 25px;
+      }
+
+      .header-btn {
+        height: 27px;
+        min-width: 27px;
+      }
+
+      .loader-mark {
+        width: 35px;
+        height: 35px;
+      }
+
+      .loader-title {
+        font-size: 13px;
+      }
+
+      #ebook-loader {
+        gap: 7px;
+      }
+    }
+
+    /* Printing is not offered in this reader UI */
+
+    @media print {
+      html, body, body * {
+        display: none !important;
+        visibility: hidden !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Loading screen -->
+  <div id="ebook-loader" role="status" aria-live="polite">
+    <div class="loader-mark">
+      <i class="fas fa-book-open" aria-hidden="true"></i>
+    </div>
+    <div class="loader-title">इलाहाबाद की संगिनी</div>
+    <div class="loader-subtitle">एक डिजिटल पठन अनुभव</div>
+    <div class="loader-track" aria-hidden="true"><span></span></div>
+  </div>
+
+  <!-- Reader application -->
+  <div id="ebook-content">
+    <header class="ebook-header">
+      <div class="ebook-brand">
+        <div class="brand-mark" aria-hidden="true">
+          <i class="fas fa-feather-alt"></i>
+        </div>
+        <div class="brand-copy">
+          <div class="brand-title">इलाहाबाद की संगिनी</div>
+          <div class="brand-subtitle">आदर्श शुक्ला · Digital Edition</div>
+        </div>
+      </div>
+
+      <nav class="header-actions" aria-label="पुस्तक नियंत्रण">
+        <a class="header-btn" href="index.html" aria-label="मुखपृष्ठ" title="मुखपृष्ठ">
+          <i class="fas fa-home" aria-hidden="true"></i>
+          <span>मुखपृष्ठ</span>
+        </a>
+
+        <button class="header-btn restricted" type="button"
+          disabled aria-disabled="true" title="डाउनलोड उपलब्ध नहीं है"
+          aria-label="डाउनलोड प्रतिबंधित">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <span>डाउनलोड</span>
+          <i class="fas fa-lock lock-icon" aria-hidden="true"></i>
+        </button>
+
+        <button class="header-btn restricted" type="button"
+          disabled aria-disabled="true" title="शेयर उपलब्ध नहीं है"
+          aria-label="शेयर प्रतिबंधित">
+          <i class="fas fa-share-alt" aria-hidden="true"></i>
+          <span>शेयर</span>
+          <i class="fas fa-lock lock-icon" aria-hidden="true"></i>
+        </button>
+
+        <button class="header-btn fullscreen-btn" id="customFullscreen"
+          type="button" title="पूर्ण स्क्रीन" aria-label="पूर्ण स्क्रीन">
+          <i class="fas fa-expand" aria-hidden="true"></i>
+          <span>पूर्ण स्क्रीन</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="ebook-main" aria-label="डिजिटल पुस्तक">
+      <div class="stage-decoration" aria-hidden="true"></div>
+      <div id="read" aria-label="पुस्तक के पृष्ठ"></div>
+    </main>
+  </div>
+
+  <!-- Professional popup -->
+  <div id="noticeBackdrop" class="notice-backdrop" hidden>
+    <section id="noticeBox" class="notice-box"
+      role="alertdialog" aria-modal="true"
+      aria-labelledby="noticeTitle" aria-describedby="noticeMessage">
+      <div class="notice-icon" aria-hidden="true">
+        <i id="noticeIcon" class="fas fa-info-circle"></i>
+      </div>
+      <h2 id="noticeTitle" class="notice-title">सूचना</h2>
+      <p id="noticeMessage" class="notice-message"></p>
+      <button id="noticeClose" class="notice-close" type="button">ठीक है</button>
+    </section>
+  </div>
+
+  <script>
+    "use strict";
+
+    (() => {
+      const $ = id => document.getElementById(id);
+
+      const loader = $("ebook-loader");
+      const content = $("ebook-content");
+      const backdrop = $("noticeBackdrop");
+      const noticeBox = $("noticeBox");
+
+      let flipbookStarted = false;
+      let noticePreviousFocus = null;
+      let loaderTimer = null;
+
+      function hideLoader() {
+        if (loaderTimer) {
+          clearTimeout(loaderTimer);
+          loaderTimer = null;
+        }
+        loader.classList.add("hide");
+      }
+
+      function showNotice(type, title, message) {
+        const icons = {
+          error: "fa-exclamation-circle",
+          success: "fa-check-circle",
+          info: "fa-info-circle"
+        };
+
+        noticePreviousFocus = document.activeElement;
+        noticeBox.className = "notice-box " + (icons[type] ? type : "info");
+
+        $("noticeIcon").className =
+          "fas " + (icons[type] || icons.info);
+
+        $("noticeTitle").textContent = title;
+        $("noticeMessage").textContent = message;
+
+        backdrop.hidden = false;
+        $("noticeClose").focus();
+      }
+
+      function closeNotice() {
+        backdrop.hidden = true;
+
+        if (noticePreviousFocus &&
+            typeof noticePreviousFocus.focus === "function") {
+          noticePreviousFocus.focus();
+        }
+      }
+
+      $("noticeClose").addEventListener("click", closeNotice);
+
+      backdrop.addEventListener("click", event => {
+        if (event.target === backdrop) closeNotice();
+      });
+
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && !backdrop.hidden) {
+          closeNotice();
+        }
+      });
+
+      function goToLogin() {
+        window.location.replace("auth.html");
+      }
+
+      /*
+       * Keep the existing one-time access handoff from auth.js.
+       * A direct visit without the handoff returns to the login page.
+       */
+      let hasAccess = false;
+
+      try {
+        hasAccess = sessionStorage.getItem("ebookAccess") === "1";
+        if (hasAccess) {
+          sessionStorage.removeItem("ebookAccess");
+        }
+      } catch (error) {
+        showNotice(
+          "error",
+          "Session उपलब्ध नहीं",
+          "इस ब्राउज़र में session access उपलब्ध नहीं है। कृपया browser settings जाँचकर दोबारा login करें।"
+        );
+      }
+
+      if (!hasAccess) {
+        goToLogin();
+        return;
+      }
+
+      /*
+       * Fail safely if a required library or configuration is missing.
+       */
+      if (!window.firebase ||
+          !window.firebase.apps ||
+          !window.firebase.apps.length ||
+          !window.jQuery ||
+          !window.jQuery.fn ||
+          typeof window.jQuery.fn.flipBook !== "function") {
+
+        hideLoader();
+
+        showNotice(
+          "error",
+          "पुस्तक लोड नहीं हो सकी",
+          "ज़रूरी library या Firebase configuration उपलब्ध नहीं है। js/firebase-config.js, js/flipbook.min.js और network connection जाँचें।"
+        );
+
+        return;
+      }
+
+      const auth = firebase.auth();
+      const $read = window.jQuery("#read");
+
+      function initializeFlipbook() {
+        if (flipbookStarted) return;
+
+        flipbookStarted = true;
+
+        try {
+          $read.flipBook({
+            pdfUrl: "pdf/pdf.pdf",
+            lightBox: false,
+
+            /* Layout and book appearance */
+            layout: 3,
+            icons: "fontawesome",
+            useFontAwesome5: true,
+            skin: "dark",
+            skinColor: "#d8b15a",
+            skinBackground: "#1b070a",
+            backgroundColor: "#160508",
+
+            /* Compact navigation controls */
+            btnColor: "#f1d68e",
+            btnColorHover: "#ffffff",
+            btnBackground: "rgba(25, 6, 9, .92)",
+            btnBackgroundHover: "rgba(216, 177, 90, .15)",
+            btnRadius: 7,
+            btnMargin: 2,
+            btnSize: 12,
+            btnPaddingV: 5,
+            btnPaddingH: 7,
+
+            sideNavigationButtons: true,
+            sideBtnColor: "#f1d68e",
+            sideBtnColorHover: "#ffffff",
+            sideBtnBackground: "rgba(25, 6, 9, .72)",
+            sideBtnBackgroundHover: "rgba(216, 177, 90, .16)",
+            sideBtnSize: 32,
+            sideBtnRadius: 50,
+
+            currentPage: {
+              enabled: true,
+              vAlign: "bottom",
+              hAlign: "left",
+              title: "वर्तमान पृष्ठ"
+            },
+
+            /* Reading features */
+            btnAutoplay: {
+              enabled: false,
+              title: "स्वचालित पृष्ठ परिवर्तन",
+              icon: "fa-play",
+              iconAlt: "fa-pause",
+              vAlign: "top",
+              hAlign: "left"
+            },
+
+            btnZoomIn: {
+              enabled: true,
+              title: "ज़ूम बढ़ाएँ",
+              icon: "fa-search-plus"
+            },
+
+            btnZoomOut: {
+              enabled: true,
+              title: "ज़ूम घटाएँ",
+              icon: "fa-search-minus"
+            },
+
+            btnToc: {
+              enabled: false,
+              title: "विषय सूची",
+              icon: "fa-list-ol"
+            },
+
+            btnThumbs: {
+              enabled: true,
+              title: "पृष्ठ देखें",
+              icon: "fa-th-large"
+            },
+
+            btnSound: {
+              enabled: false,
+              title: "पृष्ठ ध्वनि",
+              icon: "fa-volume-up",
+              iconAlt: "fa-volume-off",
+              hideOnMobile: true
+            },
+
+            btnSingle: {
+              enabled: true,
+              title: "एकल पृष्ठ",
+              icon: "fa-file"
+            },
+
+            btnExpand: {
+              enabled: false,
+              title: "पूर्ण स्क्रीन",
+              icon: "fa-expand",
+              iconAlt: "fa-compress"
+            },
+
+            btnClose: {
+              enabled: false,
+              title: "बंद करें",
+              icon: "fa-times"
+            },
+
+            /* Explicitly disable built-in sharing, printing and downloads */
+            btnShare: {
+              enabled: false,
+              title: "शेयर",
+              icon: "fa-share-alt"
+            },
+
+            btnPrint: {
+              enabled: false,
+              title: "प्रिंट",
+              icon: "fa-print"
+            },
+
+            btnDownloadPages: {
+              enabled: false,
+              title: "पृष्ठ डाउनलोड",
+              icon: "fa-download",
+              icon2: "file_download",
+              url: "",
+              name: "Ilahabad-Ki-Sangini.pdf",
+              hideOnMobile: false
+            },
+
+            btnDownloadPdf: {
+              enabled: false,
+              title: "PDF डाउनलोड",
+              icon: "fa-file-pdf",
+              icon2: "picture_as_pdf",
+              url: "",
+              name: "Ilahabad-Ki-Sangini.pdf",
+              forceDownload: false,
+              openInNewWindow: false
+            },
+
+            /* Compact plugin menu */
+            menuTransparent: false,
+            menuBackground: "rgba(24, 5, 7, .97)",
+            menuShadow: "0 -5px 18px rgba(0, 0, 0, .22)",
+            menuPadding: 3,
+
+            menu2Transparent: false,
+            menu2Background: "rgba(24, 5, 7, .97)",
+            menu2Shadow: "0 5px 18px rgba(0, 0, 0, .22)",
+            menu2Padding: 3,
+
+            /* Disable social sharing integrations */
+            shareUrl: "",
+            shareTitle: "इलाहाबाद की संगिनी",
+            facebook: { enabled: false },
+            twitter: { enabled: false },
+            email: { enabled: false },
+            pinterest: { enabled: false },
+
+            /* Responsive display */
+            mobile: {
+              zoomRatio: 1.1,
+              singlePageMode: true
+            },
+
+            pageMode: "double",
+            responsive: true,
+            responsiveRatio: 1,
+
+            onReady: function () {
+              hideLoader();
+            }
+          });
+
+          /* Fallback for builds that do not invoke onReady */
+          loaderTimer = setTimeout(hideLoader, 8000);
+
+        } catch (error) {
+          flipbookStarted = false;
+          hideLoader();
+
+          showNotice(
+            "error",
+            "पुस्तक शुरू नहीं हो सकी",
+            "Flipbook initialize नहीं हो पाया। PDF path, plugin files और browser console जाँचें।"
+          );
+
+          console.error("Flipbook initialization failed:", error);
+        }
+      }
+
+      /* Custom fullscreen control */
+      $("customFullscreen").addEventListener("click", async () => {
+        try {
+          if (!document.fullscreenElement) {
+            const root = document.documentElement;
+
+            if (root.requestFullscreen) {
+              await root.requestFullscreen();
+            } else if (root.webkitRequestFullscreen) {
+              root.webkitRequestFullscreen();
+            } else {
+              showNotice(
+                "info",
+                "पूर्ण स्क्रीन उपलब्ध नहीं",
+                "यह browser fullscreen mode को support नहीं करता।"
+              );
+            }
+          } else {
+            if (document.exitFullscreen) {
+              await document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+              document.webkitExitFullscreen();
+            }
+          }
+        } catch (error) {
+          showNotice(
+            "info",
+            "पूर्ण स्क्रीन नहीं खुली",
+            "Browser permission या fullscreen support जाँचें।"
+          );
+        }
+      });
+
+      function updateFullscreenIcon() {
+        const button = $("customFullscreen");
+        const icon = button.querySelector("i");
+        const isFullscreen = Boolean(
+          document.fullscreenElement || document.webkitFullscreenElement
+        );
+
+        icon.className = "fas " +
+          (isFullscreen ? "fa-compress" : "fa-expand");
+
+        button.title = isFullscreen ? "पूर्ण स्क्रीन बंद करें" : "पूर्ण स्क्रीन";
+        button.setAttribute(
+          "aria-label",
+          isFullscreen ? "पूर्ण स्क्रीन बंद करें" : "पूर्ण स्क्रीन"
+        );
+      }
+
+      document.addEventListener("fullscreenchange", updateFullscreenIcon);
+      document.addEventListener("webkitfullscreenchange", updateFullscreenIcon);
+
+      /* Require an authenticated, verified Firebase user */
+      let authCheckStarted = false;
+
+      auth.onAuthStateChanged(async user => {
+        if (authCheckStarted) return;
+
+        if (!user) {
+          goToLogin();
+          return;
+        }
+
+        authCheckStarted = true;
+
+        try {
+          await user.reload();
+
+          const currentUser = auth.currentUser;
+
+          if (!currentUser) {
+            goToLogin();
+            return;
+          }
+
+          if (currentUser.emailVerified !== true) {
+            await auth.signOut();
+            window.location.replace("auth.html?verify=1");
+            return;
+          }
+
+          content.style.display = "block";
+          initializeFlipbook();
+
+        } catch (error) {
+          console.error("Authentication check failed:", error);
+
+          try {
+            await auth.signOut();
+          } catch (signOutError) {
+            console.error("Sign-out failed:", signOutError);
+          }
+
+          goToLogin();
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

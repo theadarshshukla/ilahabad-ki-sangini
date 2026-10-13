@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#180507">
+
+    <meta name="description"
+          content="❖ इलाहाबाद की संगिनी ❖ — Reader Authentication">
+
+    <title>Reader Access | इलाहाबाद की संगिनी</title>
+
+    <link rel="shortcut icon"
+          href="images/KPK_Logo.svg">
+
+    <link rel="stylesheet"
+          href="css/auth.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+    <script src="js/firebase-config.js"></script>
+
+</head>
+
+<body>
+
+<div class="auth-page">
+
+    <div class="auth-background"></div>
+
+    <main class="auth-card">
+
+        <div class="auth-logo">
+            <i class="fas fa-book-open"></i>
+        </div>
+
+        <div class="auth-heading">
+
+            <span class="auth-kicker">
+                DIGITAL READER
+            </span>
+
+            <h1>
+                ❖ इलाहाबाद की संगिनी ❖
+            </h1>
+
+            <p>
+                पुस्तक पढ़ने के लिए अपना Reader Account बनाएं।
+            </p>
+
+        </div>
+
+        <!-- LOGIN / SIGNUP -->
+
+        <section id="authForm">
+
+            <div class="form-group">
+
+                <label for="email">
+                    <i class="fas fa-envelope"></i>
+                    Gmail Address
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="yourname@gmail.com"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">
+                    <i class="fas fa-lock"></i>
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="••••••••"
+                    required>
+
+            </div>
+
+            <div id="confirmGroup"
+                 class="form-group hidden">
+
+                <label for="confirmPassword">
+                    <i class="fas fa-shield-alt"></i>
+                    Confirm Password
+                </label>
+
+                <input
+                    id="confirmPassword"
+                    type="password"
+                    autocomplete="new-password"
+                    placeholder="Password फिर से लिखें">
+
+            </div>
+
+            <button
+                id="submitBtn"
+                class="auth-btn"
+                type="button">
+
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Login</span>
+
+            </button>
+
+            <button
+                id="forgotBtn"
+                class="text-btn"
+                type="button">
+
+                Forgot Password?
+
+            </button>
+
+            <button
+                id="toggleBtn"
+                class="switch-btn"
+                type="button">
+
+                नया Reader Account बनाएं
+
+            </button>
+
+        </section>
+
+        <!-- VERIFICATION -->
+
+        <section id="verificationBox"
+                 class="verification hidden">
+
+            <div class="verification-icon">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+
+            <h2>
+                Email Verification Required
+            </h2>
+
+            <p>
+                हमने आपके Gmail address पर verification email भेजा है।
+                Gmail खोलकर verification link पर क्लिक करें।
+            </p>
+
+            <button
+                id="checkVerificationBtn"
+                class="auth-btn"
+                type="button">
+
+                <i class="fas fa-check-circle"></i>
+                मैंने Email Verify कर दिया
+
+            </button>
+
+            <button
+                id="resendBtn"
+                class="text-btn"
+                type="button">
+
+                Verification Email फिर भेजें
+
+            </button>
+
+            <button
+                id="logoutBtn"
+                class="switch-btn"
+                type="button">
+
+                दूसरा Account इस्तेमाल करें
+
+            </button>
+
+        </section>
+
+        <div id="authMessage"
+             class="message">
+        </div>
+
+        <footer class="auth-footer">
+
+            <i class="fas fa-lock"></i>
+
+            Secure Reader Access
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="js/auth.js"></script>
+
+<script>
+
+(function () {
+
+    const $ = function (id) {
+        return document.getElementById(id);
+    };
+
+    let signupMode = false;
+
+    const email = $("email");
+    const password = $("password");
+    const confirmPassword = $("confirmPassword");
+
+    const submitBtn = $("submitBtn");
+    const toggleBtn = $("toggleBtn");
+    const forgotBtn = $("forgotBtn");
+
+    const verificationBox = $("verificationBox");
+    const authForm = $("authForm");
+    const authMessage = $("authMessage");
+
+    function message(text, type) {
+
+        authMessage.textContent = text;
+
+        authMessage.className =
+            "message " + (type || "");
+
+    }
+
+    function loading(state) {
+
+        submitBtn.disabled = state;
+
+        submitBtn.innerHTML = state
+            ? '<i class="fas fa-spinner fa-spin"></i> Please wait...'
+            : signupMode
+                ? '<i class="fas fa-user-plus"></i> Create Account'
+                : '<i class="fas fa-sign-in-alt"></i> Login';
+
+    }
+
+    function showVerification() {
+
+        authForm.classList.add("hidden");
+        verificationBox.classList.remove("hidden");
+
+    }
+
+    function showAuthForm() {
+
+        verificationBox.classList.add("hidden");
+        authForm.classList.remove("hidden");
+
+    }
+
+    function toggleMode() {
+
+        signupMode = !signupMode;
+
+        $("confirmGroup")
+            .classList.toggle("hidden", !signupMode);
+
+        forgotBtn
+            .classList.toggle("hidden", signupMode);
+
+        submitBtn.innerHTML = signupMode
+            ? '<i class="fas fa-user-plus"></i> Create Account'
+            : '<i class="fas fa-sign-in-alt"></i> Login';
+
+        toggleBtn.textContent = signupMode
+            ? "पहले से Account है? Login करें"
+            : "नया Reader Account बनाएं";
+
+        password.autocomplete =
+            signupMode ? "new-password" : "current-password";
+
+        message("");
+
+    }
+
+    toggleBtn.addEventListener(
+        "click",
+        toggleMode
+    );
+
+    submitBtn.addEventListener(
+        "click",
+        function () {
+
+            const userEmail =
+                email.value.trim().toLowerCase();
+
+            const userPassword =
+                password.value;
+
+            if (!BookAuth.isGmail(userEmail)) {
+
+                message(
+                    "कृपया valid Gmail address दर्ज करें।",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (!userPassword) {
+
+                message(
+                    "Password दर्ज करें।",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (signupMode) {
+
+                if (
+                    userPassword.length < 8
+                ) {
+
+                    message(
+                        "Password कम से कम 8 characters का रखें।",
+                        "error"
+                    );
+
+                    return;
+                }
+
+                if (
+                    userPassword !==
+                    confirmPassword.value
+                ) {
+
+                    message(
+                        "दोनों passwords match नहीं कर रहे।",
+                        "error"
+                    );
+
+                    return;
+                }
+
+            }
+
+            loading(true);
+
+            const action = signupMode
+                ? BookAuth.signup(
+                    userEmail,
+                    userPassword
+                )
+                : BookAuth.login(
+                    userEmail,
+                    userPassword
+                );
+
+            action
+
+                .then(function (result) {
+
+                    loading(false);
+
+                    const user =
+                        result.user || result;
+
+                    if (
+                        user &&
+                        user.emailVerified
+                    ) {
+
+                        window.location.href =
+                            "ebook.html";
+
+                        return;
+
+                    }
+
+                    if (
+                        user &&
+                        !user.emailVerified
+                    ) {
+
+                        showVerification();
+
+                        message(
+                            "पहले अपने Gmail को verify करें।",
+                            "warning"
+                        );
+
+                    }
+
+                })
+
+                .catch(function (error) {
+
+                    loading(false);
+
+                    console.error(error);
+
+                    const errors = {
+
+                        "auth/email-already-in-use":
+                            "इस Gmail से account पहले से मौजूद है। Login करें।",
+
+                        "auth/invalid-email":
+                            "Email address सही नहीं है।",
+
+                        "auth/weak-password":
+                            "Password Firebase की security policy के अनुसार रखें।",
+
+                        "auth/invalid-credential":
+                            "Gmail या password सही नहीं है।",
+
+                        "auth/user-not-found":
+                            "यह account नहीं मिला।",
+
+                        "auth/wrong-password":
+                            "Password सही नहीं है।",
+
+                        "invalid-gmail":
+                            "केवल Gmail address इस्तेमाल करें।"
+
+                    };
+
+                    message(
+                        errors[error.code] ||
+                        "Authentication में समस्या हुई। फिर प्रयास करें।",
+                        "error"
+                    );
+
+                });
+
+        }
+    );
+
+    forgotBtn.addEventListener(
+        "click",
+        function () {
+
+            const userEmail =
+                email.value.trim().toLowerCase();
+
+            if (!BookAuth.isGmail(userEmail)) {
+
+                message(
+                    "पहले अपना Gmail address दर्ज करें।",
+                    "error"
+                );
+
+                return;
+            }
+
+            BookAuth.resetPassword(userEmail)
+
+                .then(function () {
+
+                    message(
+                        "Password reset email भेज दिया गया है।",
+                        "success"
+                    );
+
+                })
+
+                .catch(function (error) {
+
+                    console.error(error);
+
+                    message(
+                        "Password reset email भेजने में समस्या हुई।",
+                        "error"
+                    );
+
+                });
+
+        }
+    );
+
+    $("checkVerificationBtn")
+        .addEventListener(
+            "click",
+            function () {
+
+                BookAuth.refreshUser()
+
+                    .then(function (user) {
+
+                        if (
+                            user &&
+                            user.emailVerified
+                        ) {
+
+                            window.location.href =
+                                "ebook.html";
+
+                        } else {
+
+                            message(
+                                "Email अभी verify नहीं हुआ है। Gmail में verification link खोलें।",
+                                "warning"
+                            );
+
+                        }
+
+                    });
+
+            }
+        );
+
+    $("resendBtn")
+        .addEventListener(
+            "click",
+            function () {
+
+                BookAuth.resendVerification()
+
+                    .then(function () {
+
+                        message(
+                            "Verification email फिर भेज दिया गया है।",
+                            "success"
+                        );
+
+                    })
+
+                    .catch(function (error) {
+
+                        console.error(error);
+
+                        message(
+                            "Email भेजने में समस्या हुई। कुछ देर बाद फिर प्रयास करें।",
+                            "error"
+                        );
+
+                    });
+
+            }
+        );
+
+    $("logoutBtn")
+        .addEventListener(
+            "click",
+            function () {
+
+                BookAuth.logout()
+                    .then(showAuthForm);
+
+            }
+        );
+
+    BookAuth.onAuthStateChanged(
+        function (user) {
+
+            if (
+                user &&
+                user.emailVerified
+            ) {
+
+                window.location.href =
+                    "ebook.html";
+
+            }
+
+            if (
+                user &&
+                !user.emailVerified
+            ) {
+
+                showVerification();
+
+            }
+
+        }
+    );
+
+})();
+
+</script>
+
+</body>
+
+</html>
